@@ -1,6 +1,7 @@
 call plug#begin()
 Plug 'ianding1/leetcode.vim'
 Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set termguicolors

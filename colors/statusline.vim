@@ -15,7 +15,7 @@ set laststatus=2
 " ':help statusline' is your friend!
 function! RedrawModeColors(mode) " {{{
   " Normal mode
-  if a:mode == 'n'
+  if a:mode == 'c'
     hi MyStatuslineAccent  guifg=#3c3836 gui=bold
     hi MyStatuslineFilename guifg=#928374 guibg=#3c3836    
     hi MyStatuslineAccentBody guifg=#928374  guibg=#3c3836     
@@ -43,7 +43,7 @@ function! RedrawModeColors(mode) " {{{
     hi MyStatuslineLineColBody guifg=#d65d0e  guibg=#3c3836    
     hi MyStatuslinePercentageBody guifg=#d65d0e  guibg=#3c3836    
   " Command mode
-  elseif a:mode == 'c'
+  elseif a:mode == 'n'
     hi MyStatuslineAccent guifg=#3c3836 
     hi MyStatuslineFilename guifg=#d79921 guibg=#3c3836    
     hi MyStatuslineAccentBody guifg=#d79921  guibg=#3c3836    
@@ -79,6 +79,15 @@ function! SetFiletype(filetype) " {{{
       return a:filetype
   endif
 endfunction
+
+function! MyFiletype(filetype)
+  if a:filetype == ''
+  	  hi MyStatuslineFiletypeBody guifg=#928374 guibg=#3c3836
+      return '-'
+  else
+  	  hi MyStatuslineFiletypeBody guifg=#d79921 guibg=#3c3836
+  return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 " }}}
 
 " Statusbar items
@@ -91,7 +100,9 @@ set statusline=%{RedrawModeColors(mode())}
 " Left side items
 " =======================
 set statusline+=%#MyStatuslineAccent#\ 
-set statusline+=%#MyStatuslineAccentBody#\ 
+"set statusline+=%#MyStatuslineAccentBody#\ 
+set statusline+=%#MyStatuslineAccentBody#%{MyFiletype(&filetype)} 
+set statusline+=%#MyStatuslineAccentBody#\  
 " Filename
 set statusline+=%#MyStatuslineFilename#%f
 set statusline+=%#MyStatuslineAccent#\
@@ -113,14 +124,13 @@ set statusline+=%#MyStatuslineAccent#\
 set statusline+=\ 
 " Current scroll percentage and total lines of the file
 set statusline+=%#MyStatuslineAccent#\ 
-set statusline+=%#MyStatuslinePercentageBody#%P
-set statusline+=\/\%#MyStatuslinePercentageBody#%L
+set statusline+=%#MyStatuslinePercentageBody#%p%%
 set statusline+=%#MyStatuslineAccent#\ 
 " Padding
 set statusline+=\ 
 " Filetype
 set statusline+=%#MyStatuslineAccent#\ 
-set statusline+=%#MyStatuslineFiletypeBody#%{SetFiletype(&filetype)}
+set statusline+=%#MyStatuslineFiletypeBody#%{MyFiletype(&filetype)}
 set statusline+=%#MyStatuslineAccent#\ 
 
 " Setup the colors
