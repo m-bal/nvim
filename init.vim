@@ -15,7 +15,8 @@ set number
 set noswapfile 
 set ignorecase
 set smartcase
-set hlsearch
+set incsearch
+set nohlsearch
 set linebreak
 set smartindent
 set showmatch
