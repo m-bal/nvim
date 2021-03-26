@@ -10,6 +10,7 @@ Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 set clipboard=unnamed
 
@@ -89,6 +90,7 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <C-t> :FloatermToggle<CR>
 
 
 
