@@ -1,23 +1,45 @@
 call plug#begin()
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
 Plug 'sickill/vim-monokai'
+Plug 'rhysd/vim-clang-format'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'tpope/vim-fugitive'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'mhinz/vim-startify'
+Plug 'troydm/zoomwintab.vim'
+Plug 'moll/vim-bbye'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 set clipboard=unnamed
 
+set encoding=UTF-8
+
 set termguicolors
-"colorscheme monokai
-"colorscheme peachpuff
+
+" solarized8
+" set background=dark
+" autocmd vimenter * ++nested colorscheme solarized8
+" colorscheme solarized8_flat
+" colorscheme gruvbox
+" let g:gruvbox_bold=1
+" let g:gruvbox_contrast_dark='hard'
+colorscheme monokai
+let mapleader=" "
+" colorscheme peachpuff
 " terminal esc key to c-v c-[
-tnoremap <C-v><Esc> <C-\><C-n>
+tnoremap <C-[><C-[> <C-\><C-n>
+set path=$PWD/**
 
 set nocompatible
 filetype indent plugin on
@@ -25,17 +47,21 @@ filetype indent plugin on
 if executable('rg')
 	let g:rg_derive_root='true'
 endif
-let g:airline_theme='dark'
+let g:airline_theme='molokai'
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', ],
-      \ [ 'y' ]
+      \ [ 'z' ]
       \ ]
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 
 syntax on
+set splitright
+set splitbelow
 set number
-set noswapfile 
+set noswapfile
 set ignorecase
 set smartcase
 set incsearch
@@ -51,6 +77,8 @@ set mouse=a
 set whichwrap+=<,>,h,l
 set shiftwidth=4
 set tabstop=4
+set fillchars+=vert:│
+set expandtab
 set wildmenu
 set novisualbell
 set relativenumber
@@ -58,12 +86,14 @@ set noswapfile
 set nobackup
 set nowritebackup
 set colorcolumn=80
+set signcolumn=no
 set title
 set wildignorecase
 set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.pyc
 set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
 set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
 set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*,*/test/reports/*,*/*.egg-info/*
+set wildignore+=*/builds/*
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
@@ -86,9 +116,19 @@ let g:go_auto_sameids = 1
 
 
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <Leader>pf :Files<CR>
-nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <C-g> :GFiles<CR>
+nnoremap <C-f> :Files<CR>
+nnoremap <C-s> :Rg<SPACE>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprev<CR>
+nnoremap <silent> <C-c> :Bwipeout<CR>
+nnoremap <silent> <C-t> :FloatermNew --width=0.5 --wintype=vsplit<CR>i cd "$(git rev-parse --show-toplevel)"<CR><C-l><C-\><C-n>
+" nmap <silent> nt :NERDTreeToggle<CR>
+noremap <C-j> :resize +1<CR>
+noremap <C-k> :resize -1<CR>
+noremap <C-h> :vertical resize -1<CR>
+noremap <C-l> :vertical resize +1<CR>
+
 
 
 
@@ -113,14 +153,6 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -130,6 +162,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -175,7 +208,6 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -200,7 +232,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>af  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -215,8 +247,6 @@ omap ac <Plug>(coc-classobj-a)
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -249,6 +279,19 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+let g:startify_fortune_use_unicode = 1
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   Files']            },
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
+
+let g:startify_bookmarks = [
+            \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 'b': '~/.bashrc' },
+            \ ]
 
 
 
