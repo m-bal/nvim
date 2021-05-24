@@ -1,0 +1,8 @@
+require("plugins")
+require("setup")
+require("lualine")
+require("custom.telescope")
+require("custom.lspsaga")
+require("mappings")
+require("lsp")
+require("nvim-treesitter")
