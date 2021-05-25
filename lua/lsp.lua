@@ -1,29 +1,4 @@
-
-
 lsp = require("lspconfig")
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif vim.fn.call("vsnip#available", {1}) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
-    else
-        return t "<Tab>"
-    end
-end
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
-    else
-        return t "<S-Tab>"
-    end
-end
 
 local on_attach = function(client, bufnr)
     require('completion').on_attach()
@@ -31,8 +6,8 @@ local on_attach = function(client, bufnr)
     local opts = { noremap=true, silent=true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -53,24 +28,45 @@ end
 vim.api.nvim_command([[command! Format execute 'lua vim.lsp.buf.formatting()']])
 
 local servers = { 'pyright' }
-
 for _, server in ipairs(servers) do
   lsp[server].setup {
     on_attach = on_attach,
   }
 end
 
-lsp.clangd.setup {
+-- lsp.clangd.setup {
+--     on_attach = on_attach,
+--     default_config = {
+--         cmd = {
+--             "clangd-11", "--background-index --pch-storage=memory",
+--             "--clang-tidy", "--suggest-missing-includes",
+--             "--query-driver=/usr/bin/g++", "--completion-style=detailed",
+--             "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
+--         },
+--         -- root_dir = "compile_commands.json",
+--         filetypes = {"c", "cpp", "objc", "objcpp"},
+--     }
+-- }
+
+-- ccls works a lot better than clangd with lsp
+lsp.ccls.setup {
+    init_options = {
+        compilationDatabaseDirectory = "";
+        index = {
+          threads = 2;
+        };
+        cache = {
+            directory = "/home/manvir/.cache/ccls-cache";
+        };
+    },
+
     on_attach = on_attach,
     default_config = {
         cmd = {
-            "clangd", "--background-index", "--pch-storage=memory",
-            "--clang-tidy", "--suggest-missing-includes", "--all-scopes-completion=true",
-            "--query-driver=/usr/bin/g++", "--completion-style=detailed", "--enable-config",
-            "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
-            "--header-insertion=iwyu"
+            "clangd", "--background-index",
         },
-        filetypes = {"c", "cpp", "objc", "objcpp"},
+        root_dir = "",
+        filetypes = {"c", "cpp", "hpp", "objc", "objcpp"},
     }
 }
 

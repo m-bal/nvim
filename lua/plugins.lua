@@ -22,10 +22,19 @@ return require('packer').startup(function()
     use { 'nvim-treesitter/nvim-treesitter' }
     use { 'neovim/nvim-lspconfig' }
     use { 'nvim-lua/completion-nvim' }
+    -- use { 'hrsh7th/nvim-compe' }
     use { 'nvim-telescope/telescope-fzy-native.nvim' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-surround' }
     use { 'airblade/vim-rooter' }
     use { 'ntpeters/vim-better-whitespace' }
+    use {
+        'glepnir/galaxyline.nvim',
+        branch = 'main',
+        -- your statusline
+        config = require("custom.evilline"),
+        -- some optional icons
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
 end)
