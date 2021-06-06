@@ -1,6 +1,7 @@
 
 vim.api.nvim_set_keymap('n', '<C-g>', ':lua require(\'telescope.builtin\').git_files()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-f>', ':lua require(\'telescope.builtin\').file_browser()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'custom.telescope\').search_file()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope.builtin\').file_browser({hidden=true})<CR>', {silent=true})
 -- vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'custom.telescope\').searchin_projects()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'telescope.builtin\').live_grep()<CR>', {silent=true})
@@ -11,6 +12,7 @@ vim.api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bd!<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-t>', ':vsplit|terminal<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-w>o', ':lua toggleZoom()<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '<leader>dh', ':DiffHistory<CR>', {silent=false})
 
 vim.g.windowZoom = 1
 function toggleZoom()
@@ -23,7 +25,6 @@ function toggleZoom()
     end
 end
 
--- vim.api.nvim_set_keymap('t'
 vim.api.nvim_command("tmap ; <C-\\><C-n>")
 vim.api.nvim_command("tmap <C-b> ;<C-b>")
 

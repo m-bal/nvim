@@ -31,18 +31,11 @@ require('telescope').load_extension('fzy_native')
 
 
 local M = {}
-M.searchin_projects = function()
-    local file = vim.split(vim.fn.execute('!git rev-parse --show-toplevel'), '\n')[4]
-    if vim.fn.isdirectory(file) ~= 0 then
-        require("telescope.builtin").live_grep({
-            prompt_title = "Search ",
-            cwd = file
-        })
-    else
-        require("telescope.builtin").live_grep({
-            prompt_title = "Search ",
-        })
-    end
+M.search_file = function()
+    require("telescope.builtin").file_browser({
+        prompt_title = "Search ",
+        cwd = vim.fn.expand("%:p:h"),
+    })
 end
 
 M.search_nvim = function()

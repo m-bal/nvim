@@ -41,8 +41,5 @@ vim.b.mapleader = ' '
 vim.cmd('language en_US.utf-8')
 
 vim.g.termbufm_direction_cmd = 'new'
--- vim.o.listchars = 'eol:$,tab:>-,trail:~,extends:>,precedes:<'
 vim.o.listchars= 'tab:>-,trail:·,extends:>,precedes:<'
 
--- vim.g.indent_blankline_space_char = '.'
--- vim.g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
