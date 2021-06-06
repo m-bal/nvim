@@ -16,6 +16,7 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.showmode = false
 vim.o.cmdheight = 2
 vim.o.pumblend = 17
+vim.o.swapfile = false
 
 vim.wo.number = true
 vim.wo.relativenumber = false
