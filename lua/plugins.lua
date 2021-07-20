@@ -1,11 +1,13 @@
 vim.cmd('packadd packer.nvim')
-
-
 return require('packer').startup(function()
-    use { 'wbthomason/packer.nvim', opt = true }
+    use 'wbthomason/packer.nvim'
+    use { 'camspiers/snap', rocks = {'fzy'}}
     use 'folke/tokyonight.nvim'
+    use 'folke/which-key.nvim'
+    use 'glepnir/zephyr-nvim'
     use 'morhetz/gruvbox'
     use 'glepnir/lspsaga.nvim'
+    use 'srcery-colors/srcery-vim'
 
     use {
         'hoob3rt/lualine.nvim',
@@ -17,7 +19,8 @@ return require('packer').startup(function()
     }
     -- use { 'folke/lsp-colors.nvim' }
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-    use { 'romgrk/barbar.nvim', require = 'kyazdani42/nvim-web-devicons' }
+    -- use { 'romgrk/barbar.nvim', require = 'kyazdani42/nvim-web-devicons' }
+    -- use 'bling/vim-bufferline'
 
     use { 'nvim-treesitter/nvim-treesitter' }
     use { 'neovim/nvim-lspconfig' }
@@ -27,14 +30,15 @@ return require('packer').startup(function()
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-surround' }
+    use { 'tpope/vim-vinegar' }
     use { 'airblade/vim-rooter' }
     use { 'ntpeters/vim-better-whitespace' }
-    use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
-        -- your statusline
-        config = require("custom.evilline"),
-        -- some optional icons
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
+    -- use {
+    --     'glepnir/galaxyline.nvim',
+    --     branch = 'main',
+    --     -- your statusline
+    --     config = require("custom.evilline"),
+    --     -- some optional icons
+    --     requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    -- }
 end)
