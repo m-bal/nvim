@@ -1,14 +1,14 @@
-
+local M = {}
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
-          'rg',
-          '--color=never',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-          '--smart-case'
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case'
         },
         file_sorter = require('telescope.sorters').get_fzy_sorter,
         color_devicons = true,
@@ -23,26 +23,26 @@ require('telescope').setup {
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true,
-        }
+        },
+        file_browser = {
+            -- theme = "dropdown",
+        },
     }
 }
 
 require('telescope').load_extension('fzy_native')
 
+local themes = require('telescope.themes')
 
-local M = {}
-M.search_file = function()
-    require("telescope.builtin").file_browser({
-        prompt_title = "Search ",
-        cwd = vim.fn.expand("%:p:h"),
-    })
+
+function M.git_dots()
+    local opts = themes.get_dropdown {
+        winblend = 20,
+        border = true,
+        shorten_path = false,
+    }
+    require("telescope.builtin").git_files(opts)
 end
 
-M.search_nvim = function()
-    require("telescope.builtin").git_files({
-        prompt_title = "Search Nvim Config",
-        cwd = '~/.config/nvim/'
-    })
-end
 
 return M

@@ -1,7 +1,8 @@
 lsp = require("lspconfig")
 
 local on_attach = function(client, bufnr)
-    require('completion').on_attach()
+    -- require('cmp_nvim_lsp').on_attach()
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- Mappings.
     local opts = { noremap=true, silent=true }
 
@@ -16,7 +17,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>CodeActionMenu<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -27,12 +28,18 @@ local on_attach = function(client, bufnr)
 end
 vim.api.nvim_command([[command! Format execute 'lua vim.lsp.buf.formatting()']])
 
-local servers = { 'pyright' }
+
+local servers = { 'dockerls' }
 for _, server in ipairs(servers) do
   lsp[server].setup {
     on_attach = on_attach,
   }
 end
+
+
+lsp.jedi_language_server.setup {
+  on_attach = on_attach,
+};
 
 -- lsp.clangd.setup {
 --     on_attach = on_attach,
@@ -53,7 +60,7 @@ lsp.ccls.setup {
     init_options = {
         compilationDatabaseDirectory = "";
         index = {
-          threads = 2;
+          threads = 5;
         };
         cache = {
             directory = "/home/manvir/.cache/ccls-cache";
@@ -63,7 +70,10 @@ lsp.ccls.setup {
     on_attach = on_attach,
     default_config = {
         cmd = {
-            "clangd", "--background-index",
+            "clangd", "--background-index --pch-storage=memory",
+            "--clang-tidy", "--suggest-missing-includes",
+            "--query-driver=/usr/bin/g++", "--completion-style=detailed",
+            "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
         },
         root_dir = "",
         filetypes = {"c", "cpp", "hpp", "objc", "objcpp"},
@@ -71,19 +81,19 @@ lsp.ccls.setup {
 }
 
 require('nvim-treesitter.configs').setup {
-  enabled_installed = "all",
-  highlight = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-    },
-  },
+ enabled_installed = "all",
+ highlight = {
+   enable = true,
+ },
+ textobjects = {
+   select = {
+     enable = true,
+     keymaps = {
+       ["af"] = "@function.outer",
+       ["if"] = "@function.inner",
+       ["ac"] = "@class.outer",
+       ["ic"] = "@class.inner",
+     },
+   },
+ },
 }

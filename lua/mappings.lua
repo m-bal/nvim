@@ -6,20 +6,25 @@ function extendMap(mode, prefix, suffixCmd, opt)
     end
 end
 
-vim.api.nvim_set_keymap('n', '<C-f>', ':lua require(\'telescope.builtin\').file_browser({cwd=\'~\'})<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'custom.telescope\').search_file()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope.builtin\').file_browser({hidden=true})<CR>', {silent=true})
--- vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'custom.telescope\').searchin_projects()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-f>', ':lua require(\'telescope\').extensions.file_browser.file_browser({cwd=\'~\'})<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Search ",cwd=vim.fn.expand("%:p:h")})<CR>', {silent=true})
+-- vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'telescope.builtin\').file_browser({prompt_title="Search "})<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope\').extensions.file_browser.file_browser({hidden=true})<CR>', {silent=true})
+-- vim.api.nvim_set_keymap('n', '<leader>gf', ':lua require(\'custom.telescope\').git_files()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'telescope.builtin\').live_grep()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>nc', ':lua require(\'telescope.builtin\').git_files({cwd=\'~/.config/nvim/\'})<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>bf', ':lua require(\'telescope.builtin\').buffers(require(\'telescope.themes\').get_dropdown({previewer=false, layout_config={width=.9}}))<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>rc', ':luafile %<CR>', {silent=false})
-vim.api.nvim_set_keymap('n', '<C-p>', ':bp<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<C-n>', ':bn<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bd!<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-p>', ':BufferPrev<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>bd', ':BufferClose<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-t>', ':vsplit|terminal<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>zm', ':lua toggleZoom()<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>dh', ':DiffHistory<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>mp', ':Telescope man_pages<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '-', ':Explore<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '<leader>cp', 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR>', {silent=false})
+
 extendMap(
     'n',
     '<leader>g',
@@ -41,15 +46,24 @@ function toggleZoom()
     end
 end
 
+function diffMode()
+    vim.cmd[[
+        hi DiffAdd          ctermbg=72   ctermfg=238  cterm=NONE        guibg=#5bb899 guifg=#3c4855 gui=NONE
+        hi DiffDelete       ctermbg=167  ctermfg=238  cterm=NONE        guibg=#db6c6c guifg=#3c4855 gui=NONE
+        hi DiffChange       ctermbg=238  ctermfg=178  cterm=UNDERLINE   guibg=#3c4855 guifg=#d5bc02 gui=UNDERLINE
+        hi DiffText         ctermbg=178  ctermfg=238  cterm=NONE        guibg=#d5bc02 guifg=#3c4855 gui=NONE
+    ]]
+end
+
 vim.api.nvim_command("tmap ; <C-\\><C-n>")
 vim.api.nvim_command("tmap <C-b> ;<C-b>")
 
-vim.api.nvim_command("inoremap <expr> <Tab> pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"")
-vim.api.nvim_command("inoremap <expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"")
+-- vim.api.nvim_command("inoremap <expr> <Tab> pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"")
+-- vim.api.nvim_command("inoremap <expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"")
 vim.cmd [[
     augroup rc
     au!
-    au TermOpen * setlocal nobuflisted
+    au TermOpen * BufferMove -1
     augroup end
 ]]
 
@@ -59,19 +73,21 @@ vim.cmd [[
 ]]
 
 vim.cmd[[
-    highlight Normal guibg=black
-    highlight NonText guibg=black
+    highlight Normal ctermbg=NONE
+    highlight NonText ctermbg=NONE
 ]]
 vim.cmd[[
-    highlight Normal ctermbg=black
-    highlight NonText ctermbg=black
+    highlight Normal guibg=#000000
+    highlight NonText guibg=#000000
 ]]
+
 vim.cmd[[
-    autocmd VimEnter * hi Normal ctermbg=black guibg=black
+    autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 ]]
-vim.cmd[[
-    highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=Green guibg=None
-    highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=Red guibg=None
-    highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=Black guibg=White
-    highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=Orange guibg=White
-]]
+-- vim.cmd[[
+--     hi DiffAdd          ctermbg=72   ctermfg=238  cterm=NONE        guibg=#5bb899 guifg=#3c4855 gui=NONE
+--     hi DiffDelete       ctermbg=167  ctermfg=238  cterm=NONE        guibg=#db6c6c guifg=#3c4855 gui=NONE
+--     hi DiffChange       ctermbg=238  ctermfg=178  cterm=UNDERLINE   guibg=#3c4855 guifg=#d5bc02 gui=UNDERLINE
+--     hi DiffText         ctermbg=178  ctermfg=238  cterm=NONE        guibg=#d5bc02 guifg=#3c4855 gui=NONE
+-- ]]
+

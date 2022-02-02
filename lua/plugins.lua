@@ -1,44 +1,37 @@
 vim.cmd('packadd packer.nvim')
-return require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-    use { 'camspiers/snap', rocks = {'fzy'}}
-    use 'folke/tokyonight.nvim'
-    use 'folke/which-key.nvim'
-    use 'glepnir/zephyr-nvim'
-    use 'morhetz/gruvbox'
-    use 'glepnir/lspsaga.nvim'
-    use 'srcery-colors/srcery-vim'
 
-    use {
-        'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
-    -- use { 'folke/lsp-colors.nvim' }
-    -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-    -- use { 'romgrk/barbar.nvim', require = 'kyazdani42/nvim-web-devicons' }
-    -- use 'bling/vim-bufferline'
+return require('packer').startup(function()
+    use { 'wbthomason/packer.nvim' }
+    use { 'camspiers/snap', rocks = {'fzy'}}
+
+    -- Color schemes
+    use { 'folke/tokyonight.nvim' }
+    use { 'morhetz/gruvbox' }
+    --
+    use { 'Th3Whit3Wolf/Dusk-til-Dawn.nvim' }
+
+    use { 'lukas-reineke/indent-blankline.nvim' }
+    use { 'glepnir/lspsaga.nvim' }
+    use { 'glepnir/galaxyline.nvim', branch = 'main' }
+
+    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+
+    use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+    use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' }
 
     use { 'nvim-treesitter/nvim-treesitter' }
     use { 'neovim/nvim-lspconfig' }
-    use { 'nvim-lua/completion-nvim' }
-    -- use { 'hrsh7th/nvim-compe' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-nvim-lua' }
+    use { 'hrsh7th/nvim-cmp' }
     use { 'nvim-telescope/telescope-fzy-native.nvim' }
-    use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-surround' }
-    use { 'tpope/vim-vinegar' }
+    use { 'tpope/vim-unimpaired' }
     use { 'airblade/vim-rooter' }
     use { 'ntpeters/vim-better-whitespace' }
-    -- use {
-    --     'glepnir/galaxyline.nvim',
-    --     branch = 'main',
-    --     -- your statusline
-    --     config = require("custom.evilline"),
-    --     -- some optional icons
-    --     requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    -- }
+    use { 'numToStr/Comment.nvim' }
+
 end)
+
