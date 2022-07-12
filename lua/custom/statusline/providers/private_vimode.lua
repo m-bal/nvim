@@ -29,26 +29,26 @@ local num = {
 
 function M.get_mode()
     local mode = {
-        c      = {i.mode.c, 'purple'},
-        ce     = {i.mode.c, 'purple'},
-        cv     = {i.mode.c, 'purple'},
-        i      = {i.mode.i, 'purple'},
-        ic     = {i.mode.i, 'purple'},
-        n      = {i.mode.n, 'purple'},
-        no     = {i.mode.n, 'purple'},
-        r      = {i.mode.r, 'purple'},
-        rm     = {i.mode.r, 'purple'},
-        R      = {i.mode.r, 'purple'},
-        Rv     = {i.mode.r, 'purple'},
-        s      = {i.mode.s, 'purple'},
-        S      = {i.mode.s, 'purple'},
-        t      = {i.mode.t, 'purple'},
-        V      = {i.mode.v, 'purple'},
-        v      = {i.mode.v, 'purple'},
-        ["r?"] = {i.mode.r, 'purple'},
-        [""]  = {"🅢 ", 'purple'},
-        [""]  = {" ", 'purple'},
-        ["!"]  = {"! ", 'purple'}
+        c      = {i.mode.c, 'blue'},
+        ce     = {i.mode.c, 'blue'},
+        cv     = {i.mode.c, 'blue'},
+        i      = {i.mode.i, 'blue'},
+        ic     = {i.mode.i, 'blue'},
+        n      = {i.mode.n, 'blue'},
+        no     = {i.mode.n, 'blue'},
+        r      = {i.mode.r, 'blue'},
+        rm     = {i.mode.r, 'blue'},
+        R      = {i.mode.r, 'blue'},
+        Rv     = {i.mode.r, 'blue'},
+        s      = {i.mode.s, 'blue'},
+        S      = {i.mode.s, 'blue'},
+        t      = {i.mode.t, 'blue'},
+        V      = {i.mode.v, 'blue'},
+        v      = {i.mode.v, 'blue'},
+        ["r?"] = {i.mode.r, 'blue'},
+        [""]  = {"🅢 ", 'blue'},
+        [""]  = {" ", 'blue'},
+        ["!"]  = {"! ", 'blue'}
     }
 
     local n = (function()
@@ -72,26 +72,26 @@ end
 
 function M.seperator()
     local mode_color = {
-        c      = 'plum3',
-        ce     = 'plum3',
-        cv     = 'plum3',
-        i      = 'chartreuse3',
-        ic     = 'chartreuse3',
-        n      = 'DarkGoldenrod2',
-        no     = 'DarkGoldenrod2',
-        r      = 'chocolate',
-        rm     = 'chocolate',
-        R      = 'purple',
-        Rv     = 'purple',
-        s      = 'SkyBlue2',
-        S      = 'SkyBlue2',
-        t      = 'gray',
-        V      = 'gray',
-        v      = 'gray',
-        ["r?"] = 'chocolate',
-        [""]  = 'SkyBlue2',
-        [""]  = 'gray',
-        ["!"]  = 'plum3'
+        c      = 'blue',
+        ce     = 'blue',
+        cv     = 'blue',
+        i      = 'blue',
+        ic     = 'blue',
+        n      = 'blue',
+        no     = 'blue',
+        r      = 'blue',
+        rm     = 'blue',
+        R      = 'blue',
+        Rv     = 'blue',
+        s      = 'blue',
+        S      = 'blue',
+        t      = 'blue',
+        V      = 'blue',
+        v      = 'blue',
+        ["r?"] = 'blue',
+        [""]  = 'blue',
+        [""]  = 'blue',
+        ["!"]  = 'blue'
     }
 
     local m_color = 'error'
@@ -100,11 +100,11 @@ function M.seperator()
     end
 
     if not u.buffer_not_empty() or vim.bo.filetype == 'dashboard' then
-        u.GalaxyHi("ViModeSeperator", m_color, 'purple')
+        u.GalaxyHi("ViModeSeperator", m_color, 'blue')
     else
-        u.GalaxyHi("ViModeSeperator", m_color, 'act1')
+        u.GalaxyHi("ViModeSeperator", m_color, 'blue')
     end
 
-    return i.slant.Right
+    return i.slant.tri
 end
 return M

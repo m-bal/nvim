@@ -1,4 +1,5 @@
 local M = {}
+local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
@@ -27,6 +28,15 @@ require('telescope').setup {
         file_browser = {
             -- theme = "dropdown",
         },
+    },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<c-d>"] = actions.delete_buffer
+                }
+            }
+        }
     }
 }
 

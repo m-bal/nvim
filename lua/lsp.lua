@@ -17,9 +17,9 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>CodeActionMenu<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>cd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -28,17 +28,23 @@ local on_attach = function(client, bufnr)
 end
 vim.api.nvim_command([[command! Format execute 'lua vim.lsp.buf.formatting()']])
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Disable signs
+    signs = false,
+}
+)
 
 local servers = { 'dockerls' }
 for _, server in ipairs(servers) do
-  lsp[server].setup {
-    on_attach = on_attach,
-  }
+    lsp[server].setup {
+        on_attach = on_attach,
+    }
 end
 
 
 lsp.jedi_language_server.setup {
-  on_attach = on_attach,
+    on_attach = on_attach,
 };
 
 -- lsp.clangd.setup {
@@ -60,7 +66,7 @@ lsp.ccls.setup {
     init_options = {
         compilationDatabaseDirectory = "";
         index = {
-          threads = 5;
+            threads = 10;
         };
         cache = {
             directory = "/home/manvir/.cache/ccls-cache";

@@ -1,7 +1,8 @@
 local icons = {
     slant = {
         Right = "",
-        Left = ""
+        Left = "",
+        Tri = "",
     },
     diagnostic = {
         error = "",
@@ -15,13 +16,13 @@ local icons = {
     },
     git = "",
     mode = {
-        c = "COMMAND",
-        i = "INSERT",
-        n = "NORMAL",
-        r = "REPLACE",
-        s = "SELECT",
-        t = "TERMINAL",
-        v = "VISUAL"
+        c = "<C>",
+        i = "<I>",
+        n = "<N>",
+        r = "<R>",
+        s = "<S>",
+        t = "<T>",
+        v = "<V>"
     },
     bullet = "•"
 }

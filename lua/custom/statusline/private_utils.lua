@@ -27,6 +27,9 @@ end
 function M.space()
     return " "
 end
+function M.righttriangle()
+    return ""
+end
 
 function M.buffer_not_empty()
     if vim.fn.empty(vim.fn.expand("%:t")) ~= 1 then

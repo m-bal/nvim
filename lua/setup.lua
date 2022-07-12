@@ -1,11 +1,12 @@
--- vim.cmd[[colorscheme elflord]]
--- vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme vim-monokai-tasty]]
+-- vim.cmd[[colorscheme monokai_pro]]
+vim.cmd[[colorscheme tokyonight]]
 -- vim.cmd[[colorscheme kanagawa]]
 -- vim.cmd[[colorscheme NeoSolarized]]
-vim.cmd[[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme gruvbox]]
 -- vim.cmd[[colorscheme onedark]]
 -- vim.cmd[[colorscheme ayu-dark]]
-vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_style = "night"
 vim.g.vem_tabline_show=1
 vim.g.vem_tabline_multiwindow_mode=1
 vim.g.vem_tabline_show_number='index'
@@ -24,10 +25,12 @@ vim.o.hidden = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.o.menuitems = 50
-vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.showmode = true
+vim.opt.foldenable = false
+vim.opt.lazyredraw = true
+-- vim.o.completeopt = 'menuone,noinsert,noselect'
+-- vim.o.menuitems = 50
+-- vim.o.shortmess = vim.o.shortmess .. 'c'
+-- vim.o.showmode = true
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
 vim.o.swapfile = false
@@ -37,7 +40,7 @@ vim.g.netrw_liststyle = 1
 vim.g.netrw_fastbrowse = 0
 -- vim.o.statusline=" %f"
 -- vim.g.statusline=" %f"
-vim.o.termguicolors=false
+vim.o.termguicolors=true
 
 vim.wo.number = true
 vim.wo.relativenumber = false
@@ -60,13 +63,27 @@ vim.g.mapleader = ' '
 vim.b.mapleader = ' '
 vim.g.wildmenu = true
 
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
+vim.opt.shellslash = true
+vim.o.laststatus = 3
+
 -- vim.g.buftabline_numbers=2
 -- vim.g.buftabline_indicators=true
 
 vim.cmd('language en_US.utf-8')
 
 vim.g.termbufm_direction_cmd = 'new'
-vim.o.listchars= 'tab:>-,trail:·,extends:>,precedes:<'
+vim.opt.list=true
+vim.opt.listchars={
+    eol='﬋',
+    tab='>-',
+    trail='', 
+    nbsp='+',
+    space=' ',
+    extends='>',
+    precedes='<',
+}
 
 vim.g.indent_blankline_filetype_exclude = {
 'markdown',
@@ -159,3 +176,15 @@ vim.g.bufferline = {
 }
 
 
+local vimrc_group = vim.api.nvim_create_augroup('vimrc', { clear = true })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = '*',
+  command = [[setlocal nonumber norelativenumber]],
+  group = vimrc_group,
+})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  command = 'setlocal spell',
+  group = vimrc_group,
+})

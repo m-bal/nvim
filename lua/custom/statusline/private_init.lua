@@ -37,26 +37,27 @@ scrollBar = extension.scrollbar_instance
 space = u.space
 viMode = vimode.get_mode
 viModeSeperator = vimode.seperator
+righttriangle = u.righttriangle
 
 gls.left[1] = {
     Space = {
         provider = space,
-        highlight = {c.Color('blue'), c.Color('purple')}
+        highlight = {c.Color('blue'), c.Color('blue')}
     }
 }
 gls.left[2] = {
     ViMode = {
         provider = viMode,
-        highlight = {c.Color('act1'), c.Color('DarkGoldenrod2'), "bold"}
+        highlight = {c.Color('white'), c.Color('DarkGoldenrod2'), "bold"}
     }
 }
 
--- gls.left[2] = {
---     -- ViModeSeperator = {
---     --     provider = viModeSeperator,
---     --     highlight = {c.Color('act1'), c.Color('DarkGoldenrod2')}
---     -- }
--- }
+gls.left[3] = {
+    righttriangle = {
+        provider = righttriangle,
+        highlight = {c.Color('blue'), c.Color('DarkGoldenrod2')}
+    }
+}
 
 -- gls.left[3] = {
 --     -- FileSize = {
@@ -66,13 +67,13 @@ gls.left[2] = {
 --     -- }
 -- }
 
-gls.left[3] = {
+gls.left[4] = {
     FileName = {
         provider = fileName,
         seperator = " | ",
-        condition = u.buffer_not_empty,
+        -- condition = u.buffer_not_empty,
         separator_highlight = {c.Color('purple'), c.Color('act1')},
-        highlight = {c.Color('func'), c.Color('act1')}
+        highlight = {c.Color('black'), c.Color('DarkGoldenrod2')}
     }
 }
 
@@ -98,13 +99,15 @@ gls.left[3] = {
 --     }
 -- }
 
--- gls.left[6] = {
---     DiagnosticInfo = {
---         provider = diagnosticInfo,
---         icon = " " .. i.bullet,
---         highlight = {c.Color('info'), c.Color('act1')}
---     }
--- }
+gls.left[6] = {
+    DiagnosticInfo = {
+        provider = diagnosticInfo,
+        icon = " " .. i.bullet,
+        separator = i.slant.Tri,
+        separator_highlight = {c.Color('DarkGoldenrod2'), c.Color('DarkGoldenrod1')},
+        highlight = {c.Color('white'), c.Color('DarkGoldenrod1')}
+    }
+}
 
 -- gls.left[8] = {
 --     Space = {
@@ -171,23 +174,25 @@ gls.left[15] = {
 -- gls.left[9] = {
 --     Space = {
 --         provider = " ",
---         highlight = {c.Color('func'), c.Color('act1')},
+--         highlight = {c.Color('func'), c.Color('DarkGoldenrod2')},
 --     }
 -- }
 
+-- gls.right[1] = {
+--     Space = {
+--         provider = righttriangle,
+--         highlight = {c.Color('DarkGoldenrod2'), c.Color('DarkGoldenrod2')}
+--     }
+-- }
 gls.right[1] = {
-    Space = {
-        provider = space,
-        highlight = {c.Color('blue'), c.Color('purple')}
-    }
-}
-gls.right[2] = {
     FileFormat = {
         provider = fileFormat,
+        separator = i.slant.Tri,
+        separator_highlight = {c.Color('DarkGoldenrod1'), c.Color('purple')},
         highlight = {c.Color('base'), c.Color('purple'), "bold"}
     }
 }
-gls.right[3] = {
+gls.right[2] = {
     LineInfo = {
         provider = lineColumn,
         separator = " | ",
@@ -195,20 +200,20 @@ gls.right[3] = {
         highlight = {c.Color('base'), c.Color('purple')}
     }
 }
-gls.right[4] = {
+gls.right[3] = {
     PerCent = {
         provider = linePercent,
-        separator = i.slant.Left,
-        separator_highlight = {c.Color('act1'), c.Color('purple')},
-        highlight = {c.Color('base'), c.Color('act1')}
+        separator = i.slant.Right,
+        separator_highlight = {c.Color('purple'), c.Color('DarkGoldenrod2')},
+        highlight = {c.Color('white'), c.Color('DarkGoldenrod2')}
     }
 }
-gls.right[5] = {
-    ScrollBar = {
-        provider = scrollBar,
-        highlight = {c.Color('yellow'), c.Color('purple')}
-    }
-}
+-- gls.right[4] = {
+--     ScrollBar = {
+--         provider = scrollBar,
+--         highlight = {c.Color('yellow'), c.Color('purple')}
+--     }
+-- }
 
 gls.short_line_left[1] = {
     BufferType = {
