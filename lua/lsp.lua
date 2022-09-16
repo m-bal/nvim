@@ -1,7 +1,7 @@
 lsp = require("lspconfig")
 
 local on_attach = function(client, bufnr)
-    -- require('cmp_nvim_lsp').on_attach()
+-- require('cmp_nvim_lsp').on_attach()
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- Mappings.
     local opts = { noremap=true, silent=true }
@@ -42,64 +42,106 @@ for _, server in ipairs(servers) do
     }
 end
 
-
-lsp.jedi_language_server.setup {
+lsp.pylsp.setup {
     on_attach = on_attach,
 };
 
--- lsp.clangd.setup {
+lsp.gopls.setup{
+    on_attach = on_attach
+};
+
+lsp.tailwindcss.setup{
+    on_attach = on_attach
+};
+
+lsp.tsserver.setup{
+    on_attach = on_attach
+};
+
+-- ccls works a lot better than clangd with lsp
+-- lsp.ccls.setup {
+--     init_options = {
+--         compilationDatabaseDirectory = "/home/manvir/gitlab/linear-generator/builds/dbg-x86";
+--         index = {
+--             threads = 10;
+--         };
+--         cache = {
+--             directory = "/home/manvir/.cache/ccls-cache";
+--         };
+--     },
+--
 --     on_attach = on_attach,
 --     default_config = {
 --         cmd = {
---             "clangd-11", "--background-index --pch-storage=memory",
+--             "clangd", "--background-index --pch-storage=memory",
 --             "--clang-tidy", "--suggest-missing-includes",
 --             "--query-driver=/usr/bin/g++", "--completion-style=detailed",
 --             "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
 --         },
---         -- root_dir = "compile_commands.json",
---         filetypes = {"c", "cpp", "objc", "objcpp"},
+--         root_dir = "",
+--         filetypes = {"c", "cpp", "hpp"},
 --     }
 -- }
 
--- ccls works a lot better than clangd with lsp
-lsp.ccls.setup {
-    init_options = {
-        compilationDatabaseDirectory = "";
-        index = {
-            threads = 10;
-        };
-        cache = {
-            directory = "/home/manvir/.cache/ccls-cache";
-        };
+require('nvim-treesitter.configs').setup {
+    enabled_installed = "all",
+    highlight = {
+        enable = true,
     },
-
-    on_attach = on_attach,
-    default_config = {
-        cmd = {
-            "clangd", "--background-index --pch-storage=memory",
-            "--clang-tidy", "--suggest-missing-includes",
-            "--query-driver=/usr/bin/g++", "--completion-style=detailed",
-            "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+            },
         },
-        root_dir = "",
-        filetypes = {"c", "cpp", "hpp", "objc", "objcpp"},
+    },
+}
+require("nvim-treesitter.configs").setup({
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { "org" }, -- < This one
+    },
+    ensure_installed = { "org" },
+})
+
+lsp.clangd.setup {
+    on_attach = on_attach,
+    cmd = {
+        "clangd-14", "--background-index", "--pch-storage=memory",
+        "--clang-tidy", "--all-scopes-completion=true",
+        "--query-driver=/usr/bin/g++", "--completion-style=detailed",
+        "--compile-commands-dir=/home/manvir/gitlab/linear-generator/builds/dbg-x86/",
+        "--enable-config",
+    },
+    root_dir = lsp.util.root_pattern(
+          'compile_commands.json',
+          'compile_flags.txt',
+          'configure.ac',
+          '.git'
+    ),
+    filetypes = {"c", "cpp", "hpp"},
+    compilationDatabaseDirectory = "/home/manvir/gitlab/linear-generator/builds/dbg-x86/compile_commands.json"
+}
+
+lsp.rust_analyzer.setup {
+    on_attach = on_attach,
+    settings = {
+        ["rust_analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
     }
 }
 
-require('nvim-treesitter.configs').setup {
- enabled_installed = "all",
- highlight = {
-   enable = true,
- },
- textobjects = {
-   select = {
-     enable = true,
-     keymaps = {
-       ["af"] = "@function.outer",
-       ["if"] = "@function.inner",
-       ["ac"] = "@class.outer",
-       ["ic"] = "@class.inner",
-     },
-   },
- },
-}

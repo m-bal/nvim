@@ -6,10 +6,11 @@ return require('packer').startup(function()
 
     -- Color schemes
     use { 'folke/tokyonight.nvim' }
-    use { 'morhetz/gruvbox' }
+    use { 'ellisonleao/gruvbox.nvim' }
     use { 'tanvirtin/monokai.nvim' }
     use { 'patstockwell/vim-monokai-tasty' }
     --
+
     use { 'Th3Whit3Wolf/Dusk-til-Dawn.nvim' }
 
     -- use { 'lukas-reineke/indent-blankline.nvim' }
@@ -20,7 +21,6 @@ return require('packer').startup(function()
     use { "nvim-telescope/telescope-file-browser.nvim" }
 
     use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-    -- use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' }
 
     use { 'nvim-treesitter/nvim-treesitter' }
     use { 'neovim/nvim-lspconfig' }

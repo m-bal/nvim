@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', '<leader>te', ':terminal<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>zm', ':lua toggleZoom()<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>dh', ':DiffHistory<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>mp', ':Telescope man_pages<CR>', {silent=false})
-vim.api.nvim_set_keymap('n', '-', ':Dirbuf<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '-', ':Dirbuf %<CR>', {silent=false})
 -- Set neovim pwd to terminal path
 vim.api.nvim_set_keymap('n', '<leader>cp', 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR>', {silent=false})
 
@@ -78,16 +78,16 @@ vim.cmd [[
 --     highlight Normal ctermbg=NONE
 --     highlight NonText ctermbg=NONE
 -- ]]
-vim.cmd[[
-    " highlight Normal guibg=#00000
-    " highlight NonText guibg=#00000
-    " highlight LineNr  guifg=#acafb0 guibg=#1e222b
-]]
-vim.cmd[[
-    highlight Normal guibg=#1e222b
-    highlight NonText guibg=#1e222b
-    highlight LineNr  guifg=#acafb0 guibg=#1e222b
-]]
+-- vim.cmd[[
+--     " highlight Normal guibg=#00000
+--     " highlight NonText guibg=#00000
+--     " highlight LineNr  guifg=#acafb0 guibg=#1e222b
+-- ]]
+-- vim.cmd[[
+--     highlight Normal guibg=#1e222b
+--     highlight NonText guibg=#1e222b
+--     highlight LineNr  guifg=#acafb0 guibg=#1e222b
+-- ]]
 --
 -- vim.cmd[[
 --     autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
