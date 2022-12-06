@@ -6,12 +6,10 @@ function extendMap(mode, prefix, suffixCmd, opt)
     end
 end
 
-vim.api.nvim_set_keymap('n', '<C-f>', ':lua require(\'telescope\').extensions.file_browser.file_browser({cwd=\'~\'})<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Search ",cwd=vim.fn.expand("%:p:h")})<CR>', {silent=true})
--- vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'telescope.builtin\').file_browser({prompt_title="Search "})<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope\').extensions.file_browser.file_browser({hidden=true})<CR>', {silent=true})
--- vim.api.nvim_set_keymap('n', '<leader>gf', ':lua require(\'custom.telescope\').git_files()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'telescope.builtin\').live_grep()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope\').extensions.file_browser.file_browser({hidden=true, respect_gitignore=false})<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>ts', ':lua require(\'custom.telescope\').files_grep()<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>nc', ':lua require(\'telescope.builtin\').git_files({cwd=\'~/.config/nvim/\'})<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>bf', ':lua require(\'telescope.builtin\').buffers(require(\'telescope.themes\').get_dropdown({previewer=false, layout_config={width=.9}, ignore_current_buffer=true, sort_lastused=true, sort_mru=true, show_all_buffers=true}))<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>rc', ':luafile %<CR>', {silent=false})
@@ -35,6 +33,7 @@ extendMap(
         ['c']=':Telescope git_commits<CR>',
         ['b']=':Telescope git_branches<CR>',
         ['f']=':Telescope git_files<CR>',
+        ['st']=':Telescope git_stash<CR>',
     })
 
 vim.g.windowZoom = 1
@@ -59,6 +58,7 @@ end
 
 vim.api.nvim_command("tmap ; <C-\\><C-n>")
 vim.api.nvim_command("tmap <C-b> ;<C-b>")
+vim.api.nvim_command("map mb %")
 
 -- vim.api.nvim_command("inoremap <expr> <Tab> pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"")
 -- vim.api.nvim_command("inoremap <expr> <S-Tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"")
@@ -67,6 +67,11 @@ vim.api.nvim_command("tmap <C-b> ;<C-b>")
 --     au!
 --     au TermOpen * BufferMove -1
 --     augroup end
+-- ]]
+-- vim.cmd[[
+--     autocmd TermOpen * SmoothCursorStop
+--     autocmd TermLeave * SmoothCursorStart
+--     autocmd VimResume * SmoothCursorStart
 -- ]]
 
 -- .make files aren't detected as make files

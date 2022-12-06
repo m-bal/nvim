@@ -33,7 +33,7 @@ vim.opt.lazyredraw = true
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
 vim.o.swapfile = false
-vim.g.gruvbox_contrast_dark='light'
+vim.g.gruvbox_contrast_dark='dark'
 vim.g.gruvbox_transparent_bg=false
 vim.g.netrw_liststyle = 1
 vim.g.netrw_fastbrowse = 0
@@ -42,7 +42,7 @@ vim.g.netrw_fastbrowse = 0
 vim.o.termguicolors=true
 
 vim.wo.number = true
-vim.wo.relativenumber = false
+vim.wo.relativenumber = true
 vim.wo.signcolumn = 'number'
 vim.wo.wrap = true
 vim.wo.cursorline = false
@@ -66,6 +66,8 @@ vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'nc'
 vim.opt.shellslash = true
 vim.o.laststatus = 3
+-- Disable mouse popup
+vim.cmd('set mouse=')
 
 -- vim.g.buftabline_numbers=2
 -- vim.g.buftabline_indicators=true
@@ -190,7 +192,8 @@ vim.api.nvim_create_autocmd('FileType', {
 
 require("gruvbox").setup({
     overrides = {
-        Normal = {bg = "#0E1018"},
+        -- Normal = {bg = "#0E1018"},
+        Normal = {bg = "NONE"},
         VertSplit = {bg = '#0E1018'},
         SignColumn = {bg = "#ff9900"},
         Define = {link = "GruvboxPurple"},
@@ -227,3 +230,4 @@ require("gruvbox").setup({
     }
 })
 vim.cmd[[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme onenord]]

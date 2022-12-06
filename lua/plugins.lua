@@ -9,6 +9,7 @@ return require('packer').startup(function()
     use { 'ellisonleao/gruvbox.nvim' }
     use { 'tanvirtin/monokai.nvim' }
     use { 'patstockwell/vim-monokai-tasty' }
+    use { 'rmehri01/onenord.nvim' }
     --
 
     use { 'Th3Whit3Wolf/Dusk-til-Dawn.nvim' }
@@ -17,7 +18,7 @@ return require('packer').startup(function()
     use { 'glepnir/lspsaga.nvim' }
     use { 'glepnir/galaxyline.nvim', branch = 'main' }
 
-    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
+    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, { "nvim-telescope/telescope-live-grep-args.nvim" }} }
     use { "nvim-telescope/telescope-file-browser.nvim" }
 
     use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
@@ -47,10 +48,6 @@ return require('packer').startup(function()
         commit = '0f6599720da853a8731fb29e809dd9bab837ba5b',
     }
     use { 'jlanzarotta/bufexplorer' }
-    use {
-        'anuvyklack/hydra.nvim',
-        requires = 'anuvyklack/keymap-layer.nvim' -- needed only for pink hydras
-    }
     use { 'elihunter173/dirbuf.nvim' }
 
 end)
