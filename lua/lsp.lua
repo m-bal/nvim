@@ -42,9 +42,46 @@ for _, server in ipairs(servers) do
     }
 end
 
-lsp.pylsp.setup {
+-- lsp.pylsp.setup {
+--     on_attach = on_attach,
+--     settings= {
+--         pylsp = {
+--             plugins = {
+--                 flake8 = {
+--                     enabled = true
+--                 },
+--                 pylint = {
+--                     enabled = true
+--                 },
+--                 jedi = {
+--                     environemnt = "~/dev3.8/bin/python3.8",
+--                     extra_paths = {
+--                         "/home/manvir/dev3.8/lib/",
+--                     },
+--                 },
+--                 jedi_completion = {
+--                     enabled = true
+--                 },
+--             }
+--         }
+--     }
+-- };
+
+lsp.pyright.setup {
     on_attach = on_attach,
-};
+    settings = {
+        venvPath = "/home/manvir/dev3.8",
+        executionEnvironments = {
+            {
+                root = "~",
+                venv = "~",
+                extraPaths = {
+                    "/home/manvir/dev3.8/lib/python3.8/site-packages"
+                },
+            }
+        },
+    }
+}
 
 lsp.gopls.setup{
     on_attach = on_attach
@@ -111,11 +148,11 @@ require("nvim-treesitter.configs").setup({
 lsp.clangd.setup {
     on_attach = on_attach,
     cmd = {
-        "clangd-14", "--background-index", "--pch-storage=memory",
+        "clangd-15", "--background-index", "--pch-storage=memory",
         "--clang-tidy", "--all-scopes-completion=true",
         "--query-driver=/usr/bin/g++", "--completion-style=detailed",
-        "--compile-commands-dir=/home/manvir/gitlab/linear-generator/builds/dbg-x86/",
-        "--enable-config",
+        "--compile-commands-dir=./builds/dbg-x86",
+        "--enable-config", "--header-insertion=iwyu", "-j=10"
     },
     root_dir = lsp.util.root_pattern(
           'compile_commands.json',
@@ -124,7 +161,7 @@ lsp.clangd.setup {
           '.git'
     ),
     filetypes = {"c", "cpp", "hpp"},
-    compilationDatabaseDirectory = "/home/manvir/gitlab/linear-generator/builds/dbg-x86/compile_commands.json"
+    compilationDatabaseDirectory = "./builds/dbg-x86/"
 }
 
 lsp.rust_analyzer.setup {

@@ -98,7 +98,7 @@ end
 
 -- get current file name
 function M.get_current_file_name()
-  local file = vim.fn.expand("%:t")
+  local file = vim.fn.expand("%:p")
   if vim.fn.empty(file) == 1 then
     return ""
   end

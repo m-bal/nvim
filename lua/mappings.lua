@@ -15,15 +15,20 @@ vim.api.nvim_set_keymap('n', '<leader>bf', ':lua require(\'telescope.builtin\').
 vim.api.nvim_set_keymap('n', '<leader>rc', ':luafile %<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<C-p>', ':bp<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':bn<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bd!<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>bd', ':bn|bd #<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-t>', ':vsplit|terminal<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>sh', ':split|terminal<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>te', ':terminal<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>zm', ':lua toggleZoom()<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>dh', ':DiffHistory<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>mp', ':Telescope man_pages<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '-', ':Dirbuf %<CR>', {silent=false})
+vim.api.nvim_set_keymap('n', '<leader>sym', ':Telescope lsp_document_symbols<CR>', {silent=true})
 -- Set neovim pwd to terminal path
 vim.api.nvim_set_keymap('n', '<leader>cp', 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR>', {silent=false})
+-- disable numberline
+vim.api.nvim_set_keymap('n', '<leader>nl', ':lua toggleNumberline()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>pg', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Projects", cwd=\'~/gitlab/\'})<CR>', {silent=true})
 
 extendMap(
     'n',
@@ -34,7 +39,20 @@ extendMap(
         ['b']=':Telescope git_branches<CR>',
         ['f']=':Telescope git_files<CR>',
         ['st']=':Telescope git_stash<CR>',
+        ['sm']=':Git submodule update --init --recursive<CR>',
+        ['lo']=':Git log --oneline<CR>',
     })
+
+
+function toggleNumberline()
+    if vim.o.nu then
+        vim.o.nu = false
+        vim.o.rnu = false
+    else
+        vim.o.nu = true
+        vim.o.rnu = true
+    end
+end
 
 vim.g.windowZoom = 1
 function toggleZoom()

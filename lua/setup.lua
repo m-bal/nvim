@@ -1,11 +1,10 @@
 -- vim.cmd[[colorscheme vim-monokai-tasty]]
 -- vim.cmd[[colorscheme monokai_pro]]
--- vim.cmd[[colorscheme kanagawa]]
+-- vim.cmd[[colorscheme elflord]]
 -- vim.cmd[[colorscheme NeoSolarized]]
 -- vim.cmd[[colorscheme gruvbox]]
 -- vim.cmd[[colorscheme onedark]]
 -- vim.cmd[[colorscheme ayu-dark]]
-vim.g.tokyonight_style = "night"
 vim.g.vem_tabline_show=1
 vim.g.vem_tabline_multiwindow_mode=1
 vim.g.vem_tabline_show_number='index'
@@ -33,7 +32,7 @@ vim.opt.lazyredraw = true
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
 vim.o.swapfile = false
-vim.g.gruvbox_contrast_dark='dark'
+vim.g.gruvbox_contrast_dark='light'
 vim.g.gruvbox_transparent_bg=false
 vim.g.netrw_liststyle = 1
 vim.g.netrw_fastbrowse = 0
@@ -79,7 +78,7 @@ vim.opt.list=true
 vim.opt.listchars={
     eol=' ',
     tab='  ',
-    trail='', 
+    trail='',
     nbsp='+',
     space=' ',
     extends=' ',
@@ -230,4 +229,5 @@ require("gruvbox").setup({
     }
 })
 vim.cmd[[colorscheme gruvbox]]
--- vim.cmd[[colorscheme onenord]]
+-- vim.cmd[[colorscheme github_light]]
+
