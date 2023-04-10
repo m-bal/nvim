@@ -181,4 +181,7 @@ lsp.rust_analyzer.setup {
         }
     }
 }
-
+vim.api.nvim_create_autocmd({'BufWritePost', 'FileWritePost'}, {
+    pattern = '*.rs',
+    command = 'silent! execute "!cargo fmt"| redraw!',
+})

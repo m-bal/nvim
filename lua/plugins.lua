@@ -43,5 +43,7 @@ return require('packer').startup(function()
     use { 'jlanzarotta/bufexplorer' }
     use { 'elihunter173/dirbuf.nvim' }
     use { 'ggandor/leap.nvim' }
+    use { 'ThePrimeagen/harpoon' }
+    use { 'willothy/flatten.nvim' }
 end)
 

@@ -29,6 +29,10 @@ vim.api.nvim_set_keymap('n', '<leader>cp', 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR
 -- disable numberline
 vim.api.nvim_set_keymap('n', '<leader>nl', ':lua toggleNumberline()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>pg', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Projects", cwd=\'~/gitlab/\'})<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-h>', ':lua require(\"harpoon.ui\").toggle_quick_menu()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-m>', ':lua require(\"harpoon.mark\").add_file()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>hn', ':lua require("harpoon.ui").nav_next()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>hp', ':lua require("harpoon.ui").nav_prev()<CR>', {silent=true})
 
 extendMap(
     'n',
