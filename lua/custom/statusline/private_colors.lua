@@ -1,4 +1,4 @@
-local d2d = require("Dusk-til-Dawn")
+--local d2d = require("Dusk-til-Dawn")
 
 M = {}
 
@@ -64,27 +64,27 @@ M.light = {
 }
 
 function M.color(val)
-    local now = d2d.currentTime()
-    local sunrise = (function()
-        if vim.g["dusk_til_dawn_sway_colord"] ~= true then
-            return vim.g["dusk_til_dawn_morning"] * 3600
-        else
-            return d2d.readSwayColordDawn()
-        end
-    end)()
-    local sunset = (function()
-        if vim.g["dusk_til_dawn_sway_colord"] ~= true then
-            return vim.g["dusk_til_dawn_night"] * 3600
-        else
-            return d2d.readSwayColordDusk()
-        end
-    end)()
-
-    if now < sunrise or now > sunset then
-        return M.dark[val]
-    else
-        return M.light[val]
-    end
+--    local now = d2d.currentTime()
+--    local sunrise = (function()
+--        if vim.g["dusk_til_dawn_sway_colord"] ~= true then
+--            return vim.g["dusk_til_dawn_morning"] * 3600
+--        else
+--            return d2d.readSwayColordDawn()
+--        end
+--    end)()
+--    local sunset = (function()
+--        if vim.g["dusk_til_dawn_sway_colord"] ~= true then
+--            return vim.g["dusk_til_dawn_night"] * 3600
+--        else
+--            return d2d.readSwayColordDusk()
+--        end
+--    end)()
+--
+--    if now < sunrise or now > sunset then
+--        return M.dark[val]
+--    else
+--        return M.light[val]
+--    end
 end
 
 function M.Color(val)

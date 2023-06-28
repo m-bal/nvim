@@ -6,7 +6,11 @@ function extendMap(mode, prefix, suffixCmd, opt)
     end
 end
 
-vim.api.nvim_set_keymap('n', '<leader>tf', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Search ",cwd=vim.fn.expand("%:p:h")})<CR>', {silent=true})
+vim.api.nvim_set_keymap(
+    'n',
+    '<leader>tf',
+    ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Search ",cwd=vim.fn.expand("%:p:h")})<CR>',
+    {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>hf', ':lua require(\'telescope\').extensions.file_browser.file_browser({hidden=true, respect_gitignore=false})<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>ts', ':lua require(\'custom.telescope\').files_grep()<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<C-s>', ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>', {silent=true})
@@ -30,9 +34,14 @@ vim.api.nvim_set_keymap('n', '<leader>cp', 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR
 vim.api.nvim_set_keymap('n', '<leader>nl', ':lua toggleNumberline()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>pg', ':lua require(\'telescope\').extensions.file_browser.file_browser({prompt_title="Projects", cwd=\'~/gitlab/\'})<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<C-h>', ':lua require(\"harpoon.ui\").toggle_quick_menu()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<C-m>', ':lua require(\"harpoon.mark\").add_file()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', 'mm', ':lua require(\"harpoon.mark\").add_file()<CR>', {silent=false})
 vim.api.nvim_set_keymap('n', '<leader>hn', ':lua require("harpoon.ui").nav_next()<CR>', {silent=true})
 vim.api.nvim_set_keymap('n', '<leader>hp', ':lua require("harpoon.ui").nav_prev()<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tn', ':tabn<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tp', ':tabp<CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tc', ':tabc<CR>', {silent=true})
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+vim.keymap.set("n", "[c", function() require("treesitter-context").go_to_context() end, { silent = true })
 
 extendMap(
     'n',

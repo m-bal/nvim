@@ -42,6 +42,18 @@ for _, server in ipairs(servers) do
     }
 end
 
+lsp.bashls.setup{
+    on_attach = on_attach,
+    filetypes = {
+        "sh", "bats"
+    },
+    settings = {
+        bashIde = {
+            globPattern = "*@(.sh|.inc|.bash|.command|.bats)"
+        }
+    },
+}
+
 -- lsp.pylsp.setup {
 --     on_attach = on_attach,
 --     settings= {
@@ -125,6 +137,15 @@ require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true,
     },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<CR>',
+          scope_incremental = '<CR>',
+          node_incremental = '<TAB>',
+          node_decremental = '<S-TAB>',
+        },
+    },
     textobjects = {
         select = {
             enable = true,
@@ -161,7 +182,7 @@ lsp.clangd.setup {
           '.git'
     ),
     filetypes = {"c", "cpp", "hpp"},
-    compilationDatabaseDirectory = "./builds/dbg-x86/"
+    compilationDatabaseDirectory = "./builds/docker-min-py/"
 }
 
 lsp.rust_analyzer.setup {

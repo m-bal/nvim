@@ -4,26 +4,23 @@ return require('packer').startup(function()
     use { 'wbthomason/packer.nvim' }
 
     -- Color schemes
+    use { 'Mofiqul/dracula.nvim' }
     use { 'ellisonleao/gruvbox.nvim' }
-    use { 'tanvirtin/monokai.nvim' }
-    use { 'patstockwell/vim-monokai-tasty' }
-    use { 'rmehri01/onenord.nvim' }
-    use { 'projekt0n/github-nvim-theme', tag = 'v0.0.7' }
-    --
 
-    use { 'Th3Whit3Wolf/Dusk-til-Dawn.nvim' }
-
-    use { 'glepnir/lspsaga.nvim' }
     use { 'glepnir/galaxyline.nvim', branch = 'main' }
 
-    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, { "nvim-telescope/telescope-live-grep-args.nvim" }} }
+    use { 'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, { "nvim-telescope/telescope-live-grep-args.nvim" }}
+    }
     use { "nvim-telescope/telescope-file-browser.nvim" }
 
-    use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+    use { 'nvim-tree/nvim-web-devicons' }
+    use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" }
 
     use { 'nvim-treesitter/nvim-treesitter',
         -- commit = '0922634d371d45c344a559119ed398f91e399085',
     }
+    use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'neovim/nvim-lspconfig' }
     use { 'hrsh7th/cmp-buffer' }
     use { 'hrsh7th/cmp-nvim-lua' }
@@ -36,14 +33,23 @@ return require('packer').startup(function()
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-surround' }
     use { 'tpope/vim-unimpaired' }
+    use { 'tpope/vim-endwise' }
     use { 'airblade/vim-rooter' }
     use { 'numToStr/Comment.nvim' }
     use { 'folke/which-key.nvim' }
-    use { 'lewis6991/gitsigns.nvim' }
-    use { 'jlanzarotta/bufexplorer' }
-    use { 'elihunter173/dirbuf.nvim' }
-    use { 'ggandor/leap.nvim' }
     use { 'ThePrimeagen/harpoon' }
     use { 'willothy/flatten.nvim' }
+    use { 'skamsie/vim-lineletters', commit = 'ba16f726cba2c0f7cf4c094408e17a3b605f0cc7' }
+    use {
+      'stevearc/oil.nvim',
+    }
+    use {
+      'jinh0/eyeliner.nvim',
+    }
+    -- use {
+    --     "nvim-neorg/neorg",
+    --     requires = "nvim-lua/plenary.nvim",
+    --     commit = "581ead50fe44ef6f0223aba7a4d442b46dfb3b13",
+    -- }
 end)
 
