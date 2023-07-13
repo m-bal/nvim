@@ -27,3 +27,74 @@ require('eyeliner').setup {
   highlight_on_key = true, -- show highlights only after keypress
   dim = true              -- dim all other characters if set to true (recommended!)
 }
+require('custom.null-ls')
+require('go').setup()
+require('glow').setup()
+require('neogit').setup{
+    disable_signs=true,
+    use_telescope=true,
+    kind="split",
+}
+-- require( 'neorg' ).setup {
+--     load = {
+--         ["core.defaults"] = {},
+--         ["core.ui"] = {},
+--         ["core.highlights"] = {
+--             config = {
+--                 highlights = {
+--                     headings = {
+--                         ["1"] = {
+--                             title = "+TSTitle",
+--                             prefix = "+TSTitle",
+--                         },
+--                     },
+--                     quotes = {
+--                         ["1"] = {
+--                             prefix = "+Grey",
+--                             content = "+Grey",
+--                         },
+--                     },
+--                 },
+--             },
+--         },
+--         ["core.keybinds"] = {
+--             config = {
+--                 defaults_keybinds = true,
+--                 neorg_leader = "<Leader>o"
+--             }
+--         },
+--         ["core.concealer"] = {},
+--         ["core.completion"] = {
+--             config = {
+--                 engine = "nvim-cmp",
+--             },
+--         },
+--         ["core.dirman"] = {
+--             config = {
+--                 workspaces = {
+--                     org = "~/Org",
+--                 },
+--                 autodetect = true,
+--                 autochdir = true,
+--             },
+--         },
+--         -- ["core.norg.esupports.metagen"] = {
+--         --     config = {
+--         --         type = "<leader>om",
+--         --     },
+--         -- },
+--         ["core.presenter"] = {
+--             config = {
+--                 zen_mode = "zen-mode",
+--             }
+--         },
+--         ["core.qol.toc"] = {},
+--         -- ["core.export"] = {},
+--         -- ["core.export.markdown"] = {
+--         --     config = {
+--         --         extensions = "all",
+--         --     },
+--         -- },
+--         ["core.ui.calendar"] = {},
+--     },
+-- }

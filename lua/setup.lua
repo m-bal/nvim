@@ -272,6 +272,7 @@ require('dracula').setup({
 })
 vim.cmd([[colorscheme dracula]])
 -- vim.cmd[[colorscheme gruvbox]]
+vim.cmd([[command! G Neogit ]])
 -- vim.cmd[[colorscheme elflord]]
 -- vim.cmd[[colorscheme github_light]]
 

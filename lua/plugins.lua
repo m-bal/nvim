@@ -22,6 +22,7 @@ return require('packer').startup(function()
     }
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'neovim/nvim-lspconfig' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
     use { 'hrsh7th/cmp-buffer' }
     use { 'hrsh7th/cmp-nvim-lua' }
     use { "hrsh7th/cmp-nvim-lsp" }
@@ -46,10 +47,14 @@ return require('packer').startup(function()
     use {
       'jinh0/eyeliner.nvim',
     }
+    use { 'NeogitOrg/neogit', requires = 'nvim-lua/plenary.nvim' }
     -- use {
     --     "nvim-neorg/neorg",
     --     requires = "nvim-lua/plenary.nvim",
     --     commit = "581ead50fe44ef6f0223aba7a4d442b46dfb3b13",
     -- }
+    use { 'ray-x/go.nvim' }
+    use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+
 end)
 

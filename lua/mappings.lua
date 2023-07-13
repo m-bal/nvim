@@ -47,13 +47,14 @@ extendMap(
     'n',
     '<leader>g',
     {
-        ['s']=':Telescope git_status<CR>',
+        ['ss']=':Telescope git_status<CR>',
         ['c']=':Telescope git_commits<CR>',
         ['b']=':Telescope git_branches<CR>',
         ['f']=':Telescope git_files<CR>',
         ['st']=':Telescope git_stash<CR>',
         ['sm']=':Git submodule update --init --recursive<CR>',
         ['lo']=':Git log --oneline<CR>',
+        ['ie']=':GoIfErr<CR>',
     })
 
 

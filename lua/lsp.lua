@@ -79,24 +79,37 @@ lsp.bashls.setup{
 --     }
 -- };
 
-lsp.pyright.setup {
-    on_attach = on_attach,
-    settings = {
-        venvPath = "/home/manvir/dev3.8",
-        executionEnvironments = {
-            {
-                root = "~",
-                venv = "~",
-                extraPaths = {
-                    "/home/manvir/dev3.8/lib/python3.8/site-packages"
-                },
-            }
-        },
-    }
-}
+-- lsp.pyright.setup {
+--     on_attach = on_attach,
+--     settings = {
+--         venvPath = "/home/manvir/dev3.8",
+--         executionEnvironments = {
+--             {
+--                 root = "~",
+--                 venv = "~",
+--                 extraPaths = {
+--                     "/home/manvir/dev3.8/lib/python3.8/site-packages"
+--                 },
+--             }
+--         },
+--     }
+-- }
+
+lsp.golangci_lint_ls.setup{}
 
 lsp.gopls.setup{
-    on_attach = on_attach
+    on_attach = on_attach,
+    root_dir = lsp.util.root_pattern("go.work", "go.mod", ".git"),
+    setttings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+        },
+    },
 };
 
 lsp.tailwindcss.setup{
@@ -182,7 +195,7 @@ lsp.clangd.setup {
           '.git'
     ),
     filetypes = {"c", "cpp", "hpp"},
-    compilationDatabaseDirectory = "./builds/docker-min-py/"
+    compilationDatabaseDirectory = "./builds/dbg-x86"
 }
 
 lsp.rust_analyzer.setup {
@@ -205,4 +218,17 @@ lsp.rust_analyzer.setup {
 vim.api.nvim_create_autocmd({'BufWritePost', 'FileWritePost'}, {
     pattern = '*.rs',
     command = 'silent! execute "!cargo fmt"| redraw!',
+})
+-- vim.api.nvim_create_autocmd({'BufWritePost', 'FileWritePost'}, {
+--     pattern = '*.go',
+--     command = 'silent! execute "!make fix &"',
+-- })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'bats',
+  callback = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
 })
