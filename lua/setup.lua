@@ -270,9 +270,13 @@ require('dracula').setup({
     -- Nothing = {} -- clear highlight of Nothing
   },
 })
-vim.cmd([[colorscheme dracula]])
+-- vim.cmd([[colorscheme dracula]])
+vim.cmd([[colorscheme wildcharm]])
+-- vim.cmd([[colorscheme desert]])
+--
 -- vim.cmd[[colorscheme gruvbox]]
-vim.cmd([[command! G Neogit ]])
+vim.cmd([[command! G Neogit]])
 -- vim.cmd[[colorscheme elflord]]
 -- vim.cmd[[colorscheme github_light]]
 
+-- vim.nvim_create_augroup(

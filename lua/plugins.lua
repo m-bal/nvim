@@ -13,6 +13,7 @@ return require('packer').startup(function()
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, { "nvim-telescope/telescope-live-grep-args.nvim" }}
     }
     use { "nvim-telescope/telescope-file-browser.nvim" }
+    use {'nvim-telescope/telescope-hop.nvim'}
 
     use { 'nvim-tree/nvim-web-devicons' }
     use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" }
@@ -47,12 +48,13 @@ return require('packer').startup(function()
     use {
       'jinh0/eyeliner.nvim',
     }
-    use { 'NeogitOrg/neogit', requires = 'nvim-lua/plenary.nvim' }
-    -- use {
-    --     "nvim-neorg/neorg",
-    --     requires = "nvim-lua/plenary.nvim",
-    --     commit = "581ead50fe44ef6f0223aba7a4d442b46dfb3b13",
-    -- }
+    use {
+        'NeogitOrg/neogit',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'sindrets/diffview.nvim'
+        }
+    }
     use { 'ray-x/go.nvim' }
     use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 

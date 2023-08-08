@@ -38,3 +38,10 @@ function! s:add_mappings() abort
   11copen
   wincmd p
 endfunction
+
+" function MyDictPopup(word)
+"     call popup_atcursor(split(system("dict " . a:word), '\n'), {'pos': 'topleft'})
+" endfunction
+"
+" command -nargs=1 DictPopup call MyDictPopup(<f-args>)
+" set keywordprg=:DictPopup
