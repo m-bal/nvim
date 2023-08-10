@@ -112,9 +112,13 @@ lsp.gopls.setup{
     },
 };
 
-lsp.tailwindcss.setup{
+lsp.texlab.setup{
     on_attach = on_attach
 };
+
+-- lsp.tailwindcss.setup{
+--     on_attach = on_attach
+-- };
 
 lsp.tsserver.setup{
     on_attach = on_attach
@@ -202,15 +206,27 @@ lsp.rust_analyzer.setup {
     on_attach = on_attach,
     settings = {
         ["rust_analyzer"] = {
+            cachePriming = {
+                numThreads = 4,
+            },
             assist = {
                 importGranularity = "module",
                 importPrefix = "self",
             },
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
             cargo = {
-                loadOutDirsFromCheck = true
+                loadOutDirsFromCheck = true,
+                buildScripts = {
+                    enable = true,
+                },
             },
             procMacro = {
-                enable = true
+                enable = true,
             },
         }
     }

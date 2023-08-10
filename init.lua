@@ -1,3 +1,4 @@
+--require('highlighter').setup()
 require("plugins")
 require("setup")
 require("custom.telescope")
