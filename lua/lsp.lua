@@ -122,7 +122,6 @@ lsp.texlab.setup({
 lsp.tailwindcss.setup({
 	on_attach = on_attach,
 })
-
 lsp.tsserver.setup({
 	on_attach = on_attach,
 })
@@ -209,7 +208,7 @@ lsp.clangd.setup({
 lsp.rust_analyzer.setup({
 	on_attach = on_attach,
 	settings = {
-		["rust_analyzer"] = {
+		["rust-analyzer"] = {
 			cachePriming = {
 				numThreads = 4,
 			},
@@ -232,6 +231,9 @@ lsp.rust_analyzer.setup({
 			procMacro = {
 				enable = true,
 			},
+			check = {
+				command = "clippy",
+			},
 		},
 	},
 })
@@ -239,10 +241,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
 	pattern = "*.rs",
 	command = 'silent! execute "!cargo fmt"| redraw!',
 })
--- vim.api.nvim_create_autocmd({'BufWritePost', 'FileWritePost'}, {
---     pattern = '*.go',
---     command = 'silent! execute "!make fix &"',
--- })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "bats",
 	callback = function()

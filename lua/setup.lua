@@ -267,8 +267,8 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
--- vim.cmd([[colorscheme dracula]])
-vim.cmd([[colorscheme wildcharm]])
+vim.cmd([[colorscheme dracula]])
+-- vim.cmd([[colorscheme wildcharm]])
 -- vim.cmd([[colorscheme desert]])
 --
 -- vim.cmd([[colorscheme gruvbox]])

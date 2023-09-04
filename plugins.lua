@@ -42,7 +42,7 @@ return require("packer").startup(function()
 	use({ "tpope/vim-surround" })
 	use({ "tpope/vim-unimpaired" })
 	use({ "tpope/vim-endwise" })
-	-- use { 'airblade/vim-rooter' }
+	use({ "airblade/vim-rooter" })
 	use({ "numToStr/Comment.nvim" })
 	use({ "folke/which-key.nvim" })
 	use({ "ThePrimeagen/harpoon" })
