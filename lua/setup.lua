@@ -62,9 +62,8 @@ vim.g.mapleader = " "
 vim.b.mapleader = " "
 vim.g.wildmenu = true
 
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 2
 vim.opt.concealcursor = "nc"
--- vim.opt.shellslash = true
 vim.o.laststatus = 3
 -- Disable mouse popup
 vim.cmd("set mouse=")

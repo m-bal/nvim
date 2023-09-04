@@ -15,6 +15,15 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua.with({
 			extra_args = { "--config-path", vim.fn.expand("~/.config/nvim/lua/formatter/stylua.toml") },
 		}),
+		null_ls.builtins.formatting.isort.with({
+			extra_args = { "--config-root", vim.fn.expand(vim.fn.getcwd() .. "/behave") },
+		}),
+		-- null_ls.builtins.formatting.black.with({
+		-- 	-- extra_args = { "--config", vim.fn.expand(vim.fn.getcwd() .. "/python") },
+		-- }),
+		null_ls.builtins.diagnostics.flake8.with({
+			extra_args = { "--config", vim.fn.expand(vim.fn.getcwd() .. "/behave/.flake8") },
+		}),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

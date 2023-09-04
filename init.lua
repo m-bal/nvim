@@ -10,12 +10,6 @@ require("mappings")
 require("custom.statusline.private_init")
 require("comments")
 require("custom.gitsigns")
-require("harpoon").setup({
-	menu = {
-		width = vim.api.nvim_win_get_width(0) - 80,
-		height = vim.api.nvim_win_get_height(0) - 30,
-	},
-})
 require("flatten").setup({
 	window = {
 		open = "alternate",
@@ -29,7 +23,6 @@ require("eyeliner").setup({
 })
 require("custom.null-ls")
 require("go").setup()
-require("glow").setup()
 require("neogit").setup({
 	disable_signs = true,
 	use_telescope = true,

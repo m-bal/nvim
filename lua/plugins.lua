@@ -19,7 +19,10 @@ return require("packer").startup(function()
 	})
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-telescope/telescope-hop.nvim" })
-
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 	use({ "nvim-tree/nvim-web-devicons" })
 	use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" })
 
@@ -42,10 +45,8 @@ return require("packer").startup(function()
 	use({ "tpope/vim-surround" })
 	use({ "tpope/vim-unimpaired" })
 	use({ "tpope/vim-endwise" })
-	-- use { 'airblade/vim-rooter' }
+	use({ "airblade/vim-rooter" })
 	use({ "numToStr/Comment.nvim" })
-	use({ "folke/which-key.nvim" })
-	use({ "ThePrimeagen/harpoon" })
 	use({ "willothy/flatten.nvim" })
 	use({ "skamsie/vim-lineletters", commit = "ba16f726cba2c0f7cf4c094408e17a3b605f0cc7" })
 	use({
@@ -62,10 +63,4 @@ return require("packer").startup(function()
 		},
 	})
 	use({ "ray-x/go.nvim" })
-	use({
-		"ellisonleao/glow.nvim",
-		config = function()
-			require("glow").setup()
-		end,
-	})
 end)
