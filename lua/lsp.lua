@@ -58,46 +58,46 @@ lsp.bashls.setup({
 	},
 })
 
--- lsp.pylsp.setup({
--- 	on_attach = on_attach,
--- 	settings = {
--- 		pylsp = {
--- 			plugins = {
--- 				flake8 = {
--- 					enabled = true,
--- 				},
--- 				pylint = {
--- 					enabled = true,
--- 				},
--- 				jedi = {
--- 					environemnt = "~/dev3.8/bin/python3.8",
--- 					extra_paths = {
--- 						"/home/manvir/dev3.8/lib/python3.8/site-packages/",
--- 					},
--- 				},
--- 				jedi_completion = {
--- 					enabled = true,
--- 				},
--- 			},
--- 		},
--- 	},
--- })
-
-lsp.pyright.setup({
+lsp.pylsp.setup({
 	on_attach = on_attach,
 	settings = {
-		venvPath = "/home/manvir/dev3.8",
-		executionEnvironments = {
-			{
-				root = "~",
-				venv = "~",
-				extraPaths = {
-					"/home/manvir/dev3.8/lib/python3.8/site-packages",
+		pylsp = {
+			plugins = {
+				flake8 = {
+					enabled = true,
+				},
+				pylint = {
+					enabled = true,
+				},
+				jedi = {
+					environemnt = "~/dev3.8/bin/python3.8",
+					extra_paths = {
+						"/home/manvir/dev3.8/lib/python3.8/site-packages/",
+					},
+				},
+				jedi_completion = {
+					enabled = true,
 				},
 			},
 		},
 	},
 })
+
+-- lsp.pyright.setup({
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		venvPath = "/home/manvir/dev3.8",
+-- 		executionEnvironments = {
+-- 			{
+-- 				root = "~",
+-- 				venv = "~",
+-- 				extraPaths = {
+-- 					"/home/manvir/dev3.8/lib/python3.8/site-packages",
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 lsp.golangci_lint_ls.setup({})
 

@@ -1,17 +1,7 @@
--- vim.cmd[[colorscheme vim-monokai-tasty]]
--- vim.cmd[[colorscheme monokai_pro]]
--- vim.cmd[[colorscheme elflord]]
--- vim.cmd[[colorscheme NeoSolarized]]
--- vim.cmd[[colorscheme gruvbox]]
--- vim.cmd[[colorscheme onedark]]
--- vim.cmd[[colorscheme ayu-dark]]
 vim.g.vem_tabline_show = 1
 vim.g.vem_tabline_multiwindow_mode = 1
 vim.g.vem_tabline_show_number = "index"
 vim.g.vem_tabline_show_icon = 0
--- vim.g.ayu_overrides = {
---     IncSearch = {bg = '#cccccc'},
--- }
 
 vim.o.autochdir = true
 vim.o.ruler = false
@@ -26,10 +16,6 @@ vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
 vim.opt.foldenable = false
 vim.opt.lazyredraw = false
--- vim.o.completeopt = 'menuone,noinsert,noselect'
--- vim.o.menuitems = 50
--- vim.o.shortmess = vim.o.shortmess .. 'c'
--- vim.o.showmode = true
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
 vim.o.swapfile = false
@@ -37,8 +23,6 @@ vim.g.gruvbox_contrast_dark = "light"
 vim.g.gruvbox_transparent_bg = false
 vim.g.netrw_liststyle = 1
 vim.g.netrw_fastbrowse = 0
--- vim.o.statusline=" %f"
--- vim.g.statusline=" %f"
 vim.o.termguicolors = true
 
 vim.wo.number = true
@@ -62,14 +46,11 @@ vim.g.mapleader = " "
 vim.b.mapleader = " "
 vim.g.wildmenu = true
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 0
 vim.opt.concealcursor = "nc"
 vim.o.laststatus = 3
 -- Disable mouse popup
 vim.cmd("set mouse=")
-
--- vim.g.buftabline_numbers=2
--- vim.g.buftabline_indicators=true
 
 vim.cmd("language en_US.utf-8")
 
@@ -98,8 +79,6 @@ vim.g.indent_blankline_buftype_exclude = {
 	"nofile",
 	"help",
 }
--- vim.g.indentLine_char = '▏' -- '│'
--- vim.g.indent_blankline_char = '▏' -- '│'
 vim.g.indent_blankline_char = "|"
 vim.g.indent_blankline_space_char = " "
 vim.g.indent_blankline_show_first_indent_level = false
@@ -107,7 +86,6 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_use_treesitter = true
 vim.cmd("highlight IndentBlankLineChar guifg=#f6f6f6 guibg=NONE")
 vim.cmd("highlight statusline guifg=#000000")
--- vim.cmd('highlight IndentBlankLineSpaceChar ctermfg=DarkGray ctermbg=NONE cterm=nocombine')
 
 -- Set barbar's options
 vim.g.bufferline = {
@@ -273,7 +251,7 @@ vim.cmd([[colorscheme dracula]])
 --
 -- vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[command! G Neogit]])
--- vim.cmd[[colorscheme elflord]]
--- vim.cmd[[colorscheme github_light]]
+-- vim.cmd([[colorscheme elflord]])
+-- vim.cmd([[colorscheme github_light]])
 
 -- vim.cmd('set rtp+=~/Projects/highlighter')

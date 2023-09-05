@@ -73,7 +73,7 @@ require("telescope").setup({
 				["?"] = actions.which_key,
 				-- IMPORTANT
 				-- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
-				["<C-h>"] = require("telescope").extensions.hop.hop, -- hop.hop_toggle_selection
+				["<C-x>"] = require("telescope").extensions.hop.hop, -- hop.hop_toggle_selection
 				-- custom hop loop to multi selects and sending selected entries to quickfix list
 				-- ["<C-space>"] = function(prompt_bufnr)
 				-- 	local opts = {
@@ -82,6 +82,8 @@ require("telescope").setup({
 				-- 	}
 				-- 	require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
 				-- end,
+				["<C-H>"] = actions.select_horizontal,
+				["<C-h>"] = actions.select_horizontal,
 			},
 			n = {
 				["n"] = custom_actions.files_grep,
