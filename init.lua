@@ -7,7 +7,7 @@ require("lsp")
 require("custom.cmp")
 require("nvim-treesitter")
 require("mappings")
-require("custom.statusline.private_init")
+-- require("custom.statusline.private_init")
 require("comments")
 require("custom.gitsigns")
 require("flatten").setup({
@@ -34,6 +34,9 @@ require("neogit").setup({
 	integrations = {
 		telescope = true,
 		diffview = true,
+	},
+	status = {
+		recent_commit_count = 20,
 	},
 })
 -- require( 'neorg' ).setup {
@@ -98,4 +101,4 @@ require("neogit").setup({
 --         -- },
 --         ["core.ui.calendar"] = {},
 --     },
--- }
+--

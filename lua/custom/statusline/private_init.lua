@@ -1,6 +1,6 @@
-local gl = require("galaxyline")
-local gls = gl.section
-gl.short_line_list = {"LuaTree", "vista", "dbui"}
+-- local gl = require("galaxyline")
+-- local gls = gl.section
+gl.short_line_list = { "LuaTree", "vista", "dbui" }
 local i = require("custom.statusline.private_icons")
 local c = require("custom.statusline.private_colors")
 local u = require("custom.statusline.private_utils")
@@ -40,23 +40,23 @@ viModeSeperator = vimode.seperator
 righttriangle = u.righttriangle
 
 gls.left[1] = {
-    Space = {
-        provider = space,
-        highlight = {c.Color('blue'), c.Color('blue')}
-    }
+	Space = {
+		provider = space,
+		highlight = { c.Color("blue"), c.Color("blue") },
+	},
 }
 gls.left[2] = {
-    ViMode = {
-        provider = viMode,
-        highlight = {c.Color('white'), c.Color('DarkGoldenrod2'), "bold"}
-    }
+	ViMode = {
+		provider = viMode,
+		highlight = { c.Color("white"), c.Color("DarkGoldenrod2"), "bold" },
+	},
 }
 
 gls.left[3] = {
-    righttriangle = {
-        provider = righttriangle,
-        highlight = {c.Color('blue'), c.Color('DarkGoldenrod2')}
-    }
+	righttriangle = {
+		provider = righttriangle,
+		highlight = { c.Color("blue"), c.Color("DarkGoldenrod2") },
+	},
 }
 
 -- gls.left[3] = {
@@ -68,13 +68,13 @@ gls.left[3] = {
 -- }
 
 gls.left[4] = {
-    FileName = {
-        provider = fileName,
-        seperator = " | ",
-        -- condition = u.buffer_not_empty,
-        separator_highlight = {c.Color('purple'), c.Color('act1')},
-        highlight = {c.Color('black'), c.Color('DarkGoldenrod2')}
-    }
+	FileName = {
+		provider = fileName,
+		seperator = " | ",
+		-- condition = u.buffer_not_empty,
+		separator_highlight = { c.Color("purple"), c.Color("act1") },
+		highlight = { c.Color("black"), c.Color("DarkGoldenrod2") },
+	},
 }
 
 -- gls.left[4] = {
@@ -100,13 +100,13 @@ gls.left[4] = {
 -- }
 
 gls.left[6] = {
-    DiagnosticInfo = {
-        provider = diagnosticInfo,
-        icon = " " .. i.bullet,
-        separator = i.slant.Tri,
-        separator_highlight = {c.Color('DarkGoldenrod2'), c.Color('DarkGoldenrod1')},
-        highlight = {c.Color('white'), c.Color('DarkGoldenrod1')}
-    }
+	DiagnosticInfo = {
+		provider = diagnosticInfo,
+		icon = " " .. i.bullet,
+		separator = i.slant.Tri,
+		separator_highlight = { c.Color("DarkGoldenrod2"), c.Color("DarkGoldenrod1") },
+		highlight = { c.Color("white"), c.Color("DarkGoldenrod1") },
+	},
 }
 
 -- gls.left[8] = {
@@ -128,7 +128,6 @@ gls.left[6] = {
 --         highlight = {c.Color('purple'), c.Color('act1')}
 --     }
 -- }
-
 
 -- gls.left[7] = {
 --     GitBranch = {
@@ -185,28 +184,28 @@ gls.left[15] = {
 --     }
 -- }
 gls.right[1] = {
-    FileFormat = {
-        provider = fileFormat,
-        separator = i.slant.Tri,
-        separator_highlight = {c.Color('DarkGoldenrod1'), c.Color('purple')},
-        highlight = {c.Color('base'), c.Color('purple'), "bold"}
-    }
+	FileFormat = {
+		provider = fileFormat,
+		separator = i.slant.Tri,
+		separator_highlight = { c.Color("DarkGoldenrod1"), c.Color("purple") },
+		highlight = { c.Color("base"), c.Color("purple"), "bold" },
+	},
 }
 gls.right[2] = {
-    LineInfo = {
-        provider = lineColumn,
-        separator = " | ",
-        separator_highlight = {c.Color('base'), c.Color('purple')},
-        highlight = {c.Color('base'), c.Color('purple')}
-    }
+	LineInfo = {
+		provider = lineColumn,
+		separator = " | ",
+		separator_highlight = { c.Color("base"), c.Color("purple") },
+		highlight = { c.Color("base"), c.Color("purple") },
+	},
 }
 gls.right[3] = {
-    PerCent = {
-        provider = linePercent,
-        separator = i.slant.Right,
-        separator_highlight = {c.Color('purple'), c.Color('DarkGoldenrod2')},
-        highlight = {c.Color('white'), c.Color('DarkGoldenrod2')}
-    }
+	PerCent = {
+		provider = linePercent,
+		separator = i.slant.Right,
+		separator_highlight = { c.Color("purple"), c.Color("DarkGoldenrod2") },
+		highlight = { c.Color("white"), c.Color("DarkGoldenrod2") },
+	},
 }
 -- gls.right[4] = {
 --     ScrollBar = {
@@ -216,19 +215,19 @@ gls.right[3] = {
 -- }
 
 gls.short_line_left[1] = {
-    BufferType = {
-        provider = fileTypeName,
-        separator = i.slant.Right,
-        separator_highlight = {c.Color('purple'), c.Color('bg')},
-        highlight = {c.Color('base'), c.Color('purple')}
-    }
+	BufferType = {
+		provider = fileTypeName,
+		separator = i.slant.Right,
+		separator_highlight = { c.Color("purple"), c.Color("bg") },
+		highlight = { c.Color("base"), c.Color("purple") },
+	},
 }
 
 gls.short_line_right[1] = {
-    BufferIcon = {
-        provider = bufferIcon,
-        separator = i.slant.Left,
-        separator_highlight = {c.Color('purple'), c.Color('bg')},
-        highlight = {c.Color('base'), c.Color('purple')}
-    }
+	BufferIcon = {
+		provider = bufferIcon,
+		separator = i.slant.Left,
+		separator_highlight = { c.Color("purple"), c.Color("bg") },
+		highlight = { c.Color("base"), c.Color("purple") },
+	},
 }

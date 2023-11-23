@@ -4,6 +4,9 @@ return require("packer").startup(function()
 	use({ "wbthomason/packer.nvim" })
 
 	-- Color schemes
+	use({ "fcpg/vim-fahrenheit" })
+	use({ "fcpg/vim-farout" })
+	use({ "fcpg/vim-orbital" })
 	use({ "Mofiqul/dracula.nvim" })
 	use({ "ellisonleao/gruvbox.nvim" })
 

@@ -99,7 +99,11 @@ lsp.pylsp.setup({
 -- 	},
 -- })
 
-lsp.golangci_lint_ls.setup({})
+lsp.golangci_lint_ls.setup({
+	init_options = {
+		command = { "gci", "overwrite", "-s", "standard", "-s", "default", "-s", "prefix(github.com/daixiang0/gci)" },
+	},
+})
 
 lsp.gopls.setup({
 	on_attach = on_attach,
@@ -237,6 +241,10 @@ lsp.rust_analyzer.setup({
 		},
 	},
 })
+-- vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
+-- 	pattern = "*.go",
+-- 	command = 'silent! execute "!gci overwrite -s standard -s default -s "prefix(github.com/daixiang0/gci) %" | redraw!',
+-- })
 vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
 	pattern = "*.rs",
 	command = 'silent! execute "!cargo fmt"| redraw!',

@@ -15,7 +15,7 @@ vim.o.updatetime = 300
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
 vim.opt.foldenable = false
-vim.opt.lazyredraw = false
+vim.opt.lazyredraw = off
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
 vim.o.swapfile = false
@@ -48,7 +48,7 @@ vim.g.wildmenu = true
 
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = "nc"
-vim.o.laststatus = 3
+vim.o.laststatus = 2
 -- Disable mouse popup
 vim.cmd("set mouse=")
 
@@ -57,9 +57,10 @@ vim.cmd("language en_US.utf-8")
 vim.g.termbufm_direction_cmd = "new"
 vim.opt.list = true
 vim.opt.listchars = {
-	eol = " ",
+	eol = "¬",
 	tab = "  ",
-	trail = "",
+	trail = "°",
+	-- trail = "",
 	nbsp = "+",
 	space = " ",
 	extends = " ",
@@ -85,7 +86,12 @@ vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_use_treesitter = true
 vim.cmd("highlight IndentBlankLineChar guifg=#f6f6f6 guibg=NONE")
-vim.cmd("highlight statusline guifg=#000000")
+-- vim.cmd("highlight statusline guifg=#000000 ctermfg=5")
+
+-- Set cursor color to green
+vim.cmd("highlight Cursor guifg=white guibg=white")
+vim.cmd("highlight Cursor2 guifg=green guibg=green")
+vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 
 -- Set barbar's options
 vim.g.bufferline = {
@@ -245,11 +251,16 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme dracula]])
+-- vim.cmd([[colorscheme dracula]])
 -- vim.cmd([[colorscheme wildcharm]])
 -- vim.cmd([[colorscheme desert]])
 --
 -- vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme darkblue]])
+-- vim.cmd([[colorscheme farout]])
+vim.cmd([[colorscheme fahrenheit]])
+-- vim.cmd([[colorscheme orbital]])
+-- vim.cmd([[colorscheme amber]])
 vim.cmd([[command! G Neogit]])
 -- vim.cmd([[colorscheme elflord]])
 -- vim.cmd([[colorscheme github_light]])
