@@ -89,9 +89,6 @@ vim.cmd("highlight IndentBlankLineChar guifg=#f6f6f6 guibg=NONE")
 -- vim.cmd("highlight statusline guifg=#000000 ctermfg=5")
 
 -- Set cursor color to green
-vim.cmd("highlight Cursor guifg=white guibg=white")
-vim.cmd("highlight Cursor2 guifg=green guibg=green")
-vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 
 -- Set barbar's options
 vim.g.bufferline = {
@@ -260,8 +257,11 @@ require("dracula").setup({
 -- vim.cmd([[colorscheme farout]])
 -- vim.cmd([[colorscheme sorbet]])
 -- vim.cmd([[colorscheme orbital]])
-vim.cmd([[colorscheme amber]])
+vim.cmd([[colorscheme preto]])
 vim.cmd([[command! G Neogit]])
+vim.cmd("highlight Cursor guifg=black guibg=red")
+vim.cmd("highlight Cursor2 guifg=green guibg=green")
+vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 -- vim.cmd([[colorscheme elflord]])
 -- vim.cmd([[colorscheme github_light]])
 

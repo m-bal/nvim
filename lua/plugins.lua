@@ -4,6 +4,7 @@ return require("packer").startup(function()
 	use({ "wbthomason/packer.nvim" })
 
 	-- Color schemes
+    use({ "ewilazarus/preto" })
 	use({ "fcpg/vim-fahrenheit" })
 	use({ "fcpg/vim-farout" })
 	use({ "fcpg/vim-orbital" })
