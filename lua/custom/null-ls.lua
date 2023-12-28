@@ -4,6 +4,8 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	-- adding new sources requires a restart
 	sources = {
+		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.code_actions.shellcheck,
 		null_ls.builtins.formatting.jq,
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.gofmt,

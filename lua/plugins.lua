@@ -7,6 +7,7 @@ return require("packer").startup(function()
 	use({ "fcpg/vim-fahrenheit" })
 	use({ "fcpg/vim-farout" })
 	use({ "fcpg/vim-orbital" })
+	use({ "camgunz/amber" })
 	use({ "Mofiqul/dracula.nvim" })
 	use({ "ellisonleao/gruvbox.nvim" })
 

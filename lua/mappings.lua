@@ -51,7 +51,7 @@ vim.api.nvim_set_keymap("n", "<leader>sym", ":Telescope lsp_document_symbols<CR>
 -- Set neovim pwd to terminal path
 vim.api.nvim_set_keymap("n", "<leader>cp", 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR>', { silent = false })
 -- disable numberline
-vim.api.nvim_set_keymap("n", "<leader>nl", ":lua toggleNumberline()<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>nl", ":lua toggleNumberlineAndList()<CR>", { silent = true })
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>pg",
@@ -78,13 +78,15 @@ extendMap("n", "<leader>g", {
 	["ie"] = ":GoIfErr<CR>",
 })
 
-function toggleNumberline()
+function toggleNumberlineAndList()
 	if vim.o.nu then
 		vim.o.nu = false
 		vim.o.rnu = false
+		vim.opt.list = false
 	else
 		vim.o.nu = true
 		vim.o.rnu = true
+		vim.opt.list = true
 	end
 end
 
