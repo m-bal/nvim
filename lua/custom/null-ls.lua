@@ -6,6 +6,9 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.formatting.prettier.with({
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "graphql", "handlebars", "svelte" }
+        }),
 		null_ls.builtins.formatting.jq,
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.gofmt,
