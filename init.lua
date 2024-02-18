@@ -1,12 +1,26 @@
+vim.g.mapleader = " "
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({{import="plugins"}})
 --require('highlighter').setup()
-require("plugins")
-require("setup")
 require("custom.telescope")
+require("setup")
 require("custom.trouble")
 require("lsp")
+require("custom.oil")
+require("mappings")
 require("custom.cmp")
 require("nvim-treesitter")
-require("mappings")
 --require("custom.statusline.private_init")
 require("custom.evilline")
 require("comments")
@@ -16,7 +30,6 @@ require("flatten").setup({
 		open = "alternate",
 	},
 })
-require("custom.oil")
 require("treesitter-context")
 require("eyeliner").setup({
 	highlight_on_key = true, -- show highlights only after keypress
@@ -40,6 +53,8 @@ require("neogit").setup({
 		recent_commit_count = 20,
 	},
 })
+require('mini.trailspace').setup()
+require('mini.indentscope').setup()
 -- require( 'neorg' ).setup {
 --     load = {
 --         ["core.defaults"] = {},

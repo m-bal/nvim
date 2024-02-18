@@ -1,4 +1,5 @@
 lsp = require("lspconfig")
+local configs = require('lspconfig/configs')
 
 local on_attach = function(client, bufnr)
 	-- require('cmp_nvim_lsp').on_attach()
@@ -70,10 +71,7 @@ lsp.pylsp.setup({
 					enabled = true,
 				},
 				jedi = {
-					environemnt = "~/dev3.8/bin/python3.8",
-					extra_paths = {
-						"/home/manvir/dev3.8/lib/python3.8/site-packages/",
-					},
+					environemnt = "python3",
 				},
 				jedi_completion = {
 					enabled = true,
@@ -123,9 +121,9 @@ lsp.gopls.setup({
 lsp.texlab.setup({
 	on_attach = on_attach,
 })
-lsp.tailwindcss.setup({
-	on_attach = on_attach,
-})
+-- lsp.tailwindcss.setup({
+-- 	on_attach = on_attach,
+-- })
 lsp.tsserver.setup({
 	on_attach = on_attach,
 })

@@ -59,32 +59,32 @@ vim.opt.list = true
 vim.opt.listchars = {
 	eol = "¬",
 	tab = "  ",
-	trail = "°",
-	-- trail = "",
+	trail = " ",
+	--trail = "",
 	nbsp = "+",
 	space = " ",
 	extends = " ",
 	precedes = " ",
 }
 
-vim.g.indent_blankline_filetype_exclude = {
-	"markdown",
-	"pandoc",
-	"vimwiki",
-	"packer",
-	"tex",
-	"tsplayground",
-}
-vim.g.indent_blankline_buftype_exclude = {
-	"terminal",
-	"nofile",
-	"help",
-}
-vim.g.indent_blankline_char = "|"
-vim.g.indent_blankline_space_char = " "
-vim.g.indent_blankline_show_first_indent_level = false
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_use_treesitter = true
+-- vim.g.indent_blankline_filetype_exclude = {
+-- 	"markdown",
+-- 	"pandoc",
+-- 	"vimwiki",
+-- 	"packer",
+-- 	"tex",
+-- 	"tsplayground",
+-- }
+-- vim.g.indent_blankline_buftype_exclude = {
+-- 	"terminal",
+-- 	"nofile",
+-- 	"help",
+-- }
+-- vim.g.indent_blankline_char = "|"
+-- vim.g.indent_blankline_space_char = " "
+-- vim.g.indent_blankline_show_first_indent_level = false
+-- vim.g.indent_blankline_show_trailing_blankline_indent = false
+-- vim.g.indent_blankline_use_treesitter = true
 vim.cmd("highlight IndentBlankLineChar guifg=#f6f6f6 guibg=NONE")
 -- vim.cmd("highlight statusline guifg=#000000 ctermfg=5")
 
@@ -255,9 +255,10 @@ require("dracula").setup({
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd([[colorscheme darkblue]])
 -- vim.cmd([[colorscheme farout]])
--- vim.cmd([[colorscheme sorbet]])
+-- vim.cmd([[colorscheme elflord]])
+vim.cmd([[colorscheme vim]])
 -- vim.cmd([[colorscheme orbital]])
-vim.cmd([[colorscheme preto]])
+-- vim.cmd([[colorscheme preto]])
 vim.cmd([[command! G Neogit]])
 vim.cmd("highlight Cursor guifg=black guibg=red")
 vim.cmd("highlight Cursor2 guifg=green guibg=green")

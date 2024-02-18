@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>bf",
+	"<C-b>",
 	":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({previewer=false, layout_config={width=.9}, ignore_current_buffer=true, sort_lastused=true, sort_mru=true, show_all_buffers=true}))<CR>",
 	{ silent = true }
 )
