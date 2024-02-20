@@ -1,17 +1,17 @@
 vim.g.mapleader = " "
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({{import="plugins"}})
+require("lazy").setup({ { import = "plugins" } })
 --require('highlighter').setup()
 require("custom.telescope")
 require("setup")
@@ -53,8 +53,9 @@ require("neogit").setup({
 		recent_commit_count = 20,
 	},
 })
-require('mini.trailspace').setup()
-require('mini.indentscope').setup()
+require("project_nvim").setup()
+require("mini.trailspace").setup()
+require("mini.indentscope").setup()
 -- require( 'neorg' ).setup {
 --     load = {
 --         ["core.defaults"] = {},

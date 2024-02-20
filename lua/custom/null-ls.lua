@@ -21,7 +21,7 @@ null_ls.setup({
 				"jsonc",
 				"yaml",
 				"markdown",
-				"graphql",
+				"graphqls",
 				"handlebars",
 				"svelte",
 			},

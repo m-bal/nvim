@@ -1,6 +1,6 @@
 return {
 	-- Color schemes
-    	{ "ewilazarus/preto" },
+	{ "ewilazarus/preto" },
 	{ "fcpg/vim-fahrenheit" },
 	{ "fcpg/vim-farout" },
 	{ "fcpg/vim-orbital" },
@@ -46,7 +46,8 @@ return {
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-unimpaired" },
 	{ "tpope/vim-endwise" },
-	{ "airblade/vim-rooter" },
+	-- { "airblade/vim-rooter" },
+	{ "ahmedkhalf/project.nvim" },
 	{ "numToStr/Comment.nvim" },
 	{ "willothy/flatten.nvim" },
 	{ "skamsie/vim-lineletters", commit = "ba16f726cba2c0f7cf4c094408e17a3b605f0cc7" },
@@ -58,14 +59,14 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-        -- commit = "322e86f345aa14e28a77c9b137216a3eb145a080",
+		-- commit = "322e86f345aa14e28a77c9b137216a3eb145a080",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 		},
 	},
 	{ "ray-x/go.nvim" },
-    { 'echasnovski/mini.nvim', version = false },
-    { 'echasnovski/mini.trailspace', version = false },
-    { 'echasnovski/mini.indentscope', version = false },
+	{ "echasnovski/mini.nvim", version = false },
+	{ "echasnovski/mini.trailspace", version = false },
+	{ "echasnovski/mini.indentscope", version = false },
 }

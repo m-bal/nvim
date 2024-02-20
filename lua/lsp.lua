@@ -1,5 +1,5 @@
 lsp = require("lspconfig")
-local configs = require('lspconfig/configs')
+local configs = require("lspconfig/configs")
 
 local on_attach = function(client, bufnr)
 	-- require('cmp_nvim_lsp').on_attach()
@@ -59,43 +59,43 @@ lsp.bashls.setup({
 	},
 })
 
-lsp.pylsp.setup({
-	on_attach = on_attach,
-	settings = {
-		pylsp = {
-			plugins = {
-				flake8 = {
-					enabled = true,
-				},
-				pylint = {
-					enabled = true,
-				},
-				jedi = {
-					environemnt = "python3",
-				},
-				jedi_completion = {
-					enabled = true,
-				},
-			},
-		},
-	},
-})
-
--- lsp.pyright.setup({
+-- lsp.pylsp.setup({
 -- 	on_attach = on_attach,
 -- 	settings = {
--- 		venvPath = "/home/manvir/dev3.8",
--- 		executionEnvironments = {
--- 			{
--- 				root = "~",
--- 				venv = "~",
--- 				extraPaths = {
--- 					"/home/manvir/dev3.8/lib/python3.8/site-packages",
+-- 		pylsp = {
+-- 			plugins = {
+-- 				flake8 = {
+-- 					enabled = true,
+-- 				},
+-- 				pylint = {
+-- 					enabled = true,
+-- 				},
+-- 				jedi = {
+-- 					environemnt = "python3",
+-- 				},
+-- 				jedi_completion = {
+-- 					enabled = true,
 -- 				},
 -- 			},
 -- 		},
 -- 	},
 -- })
+
+lsp.pyright.setup({
+	on_attach = on_attach,
+	settings = {
+		venvPath = "/home/manvir/dev3.8",
+		executionEnvironments = {
+			{
+				root = "~",
+				venv = "~",
+				extraPaths = {
+					"/home/manvir/dev3.8/lib/python3.8/site-packages",
+				},
+			},
+		},
+	},
+})
 
 lsp.golangci_lint_ls.setup({
 	init_options = {
