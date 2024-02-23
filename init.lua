@@ -43,6 +43,7 @@ require("neogit").setup({
 	telescope_sorter = function()
 		return require("telescope").extensions.fzf.native_fzf_sorter()
 	end,
+	graph_style = "unicode",
 	disable_insert_on_commit = true,
 	kind = "split",
 	integrations = {
@@ -50,12 +51,18 @@ require("neogit").setup({
 		diffview = true,
 	},
 	status = {
-		recent_commit_count = 20,
+		recent_commit_count = 30,
 	},
 })
-require("project_nvim").setup()
+require("project_nvim").setup({
+	detection_methods = { "pattern", "lsp" },
+})
 require("mini.trailspace").setup()
 require("mini.indentscope").setup()
+require("mini.pairs").setup()
+require("overseer").setup({
+	templates = { "builtin", "py-format", "py-lint" },
+})
 -- require( 'neorg' ).setup {
 --     load = {
 --         ["core.defaults"] = {},

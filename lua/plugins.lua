@@ -69,4 +69,10 @@ return {
 	{ "echasnovski/mini.nvim", version = false },
 	{ "echasnovski/mini.trailspace", version = false },
 	{ "echasnovski/mini.indentscope", version = false },
+	{ "echasnovski/mini.pairs", version = false },
+
+	{
+		"stevearc/overseer.nvim",
+		opts = {},
+	},
 }

@@ -166,6 +166,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	command = "setlocal spell",
 	group = vimrc_group,
 })
+vim.api.nvim_create_autocmd({ "FileChangedShellPost", "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})
+vim.api.nvim_create_autocmd(
+	{ "FileChangedShellPost" },
+	{ command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None', pattern = { "*" } }
+)
 
 require("gruvbox").setup({
 	overrides = {
