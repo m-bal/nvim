@@ -70,6 +70,7 @@ return {
 	{ "echasnovski/mini.trailspace", version = false },
 	{ "echasnovski/mini.indentscope", version = false },
 	{ "echasnovski/mini.pairs", version = false },
+	{ "echasnovski/mini.jump2d", version = false },
 
 	{
 		"stevearc/overseer.nvim",

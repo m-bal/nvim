@@ -60,7 +60,51 @@ require("project_nvim").setup({
 require("mini.trailspace").setup()
 require("mini.indentscope").setup()
 require("mini.pairs").setup()
+require("mini.jump2d").setup()
 require("overseer").setup({
+	task_list = {
+		-- Default detail level for tasks. Can be 1-3.
+		default_detail = 1,
+		-- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+		-- min_width and max_width can be a single value or a list of mixed integer/float types.
+		-- max_width = {100, 0.2} means "the lesser of 100 columns or 20% of total"
+		max_width = { 100, 0.1 },
+		-- min_width = {40, 0.1} means "the greater of 40 columns or 10% of total"
+		min_width = { 20, 0.05 },
+		-- optionally define an integer/float for the exact width of the task list
+		max_height = { 20, 0.1 },
+		min_height = 8,
+		height = nil,
+		-- String that separates tasks
+		separator = "────────────────────────────────────────",
+		-- Default direction. Can be "left", "right", or "bottom"
+		direction = "left",
+		-- Set keymap to false to remove default behavior
+		-- You can add custom keymaps here as well (anything vim.keymap.set accepts)
+		bindings = {
+			["?"] = "ShowHelp",
+			["g?"] = "ShowHelp",
+			["<CR>"] = "RunAction",
+			["<C-e>"] = "Edit",
+			["o"] = "Open",
+			["<C-v>"] = "OpenVsplit",
+			["<C-s>"] = "OpenSplit",
+			["<C-f>"] = "OpenFloat",
+			["<C-q>"] = "OpenQuickFix",
+			["p"] = "TogglePreview",
+			["<C-l>"] = "IncreaseDetail",
+			["<C-h>"] = "DecreaseDetail",
+			["L"] = "IncreaseAllDetail",
+			["H"] = "DecreaseAllDetail",
+			["["] = "DecreaseWidth",
+			["]"] = "IncreaseWidth",
+			["{"] = "PrevTask",
+			["}"] = "NextTask",
+			["<C-k>"] = "ScrollOutputUp",
+			["<C-j>"] = "ScrollOutputDown",
+			["q"] = "Close",
+		},
+	},
 	templates = { "builtin", "py-format", "py-lint" },
 })
 -- require( 'neorg' ).setup {

@@ -5,6 +5,12 @@ function extendMap(mode, prefix, suffixCmd, opt)
 	end
 end
 
+vim.api.nvim_set_keymap("n", "<leader>os", ":OverseerToggle<CR>", { silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>ol", ":OverseerLoadBundle<CR>", { silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>or", ":OverseerRun<CR>", { silent = true })
+
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>tf",

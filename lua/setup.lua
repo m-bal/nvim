@@ -166,14 +166,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	command = "setlocal spell",
 	group = vimrc_group,
 })
-vim.api.nvim_create_autocmd({ "FileChangedShellPost", "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-	command = "if mode() != 'c' | checktime | endif",
-	pattern = { "*" },
-})
-vim.api.nvim_create_autocmd(
-	{ "FileChangedShellPost" },
-	{ command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None', pattern = { "*" } }
-)
+-- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+-- 	command = "if &buftype != 'terminal' && mode() != 'c' | checktime | endif",
+-- 	pattern = [[^(?!term://).*]],
+-- })
+-- vim.api.nvim_create_autocmd(
+-- 	{ "FileChangedShellPost" },
+-- 	{ command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None', pattern = { "*" } }
+-- )
 
 require("gruvbox").setup({
 	overrides = {
@@ -264,12 +264,12 @@ require("dracula").setup({
 -- vim.cmd([[colorscheme darkblue]])
 -- vim.cmd([[colorscheme farout]])
 -- vim.cmd([[colorscheme elflord]])
-vim.cmd([[colorscheme vim]])
+vim.cmd([[colorscheme minicyan]])
 -- vim.cmd([[colorscheme orbital]])
 -- vim.cmd([[colorscheme preto]])
 vim.cmd([[command! G Neogit]])
 vim.cmd("highlight Cursor guifg=black guibg=red")
-vim.cmd("highlight MatchParen guifg=black guibg=red")
+vim.cmd("highlight MatchParen guifg=red guibg=None")
 vim.cmd("highlight Cursor2 guifg=green guibg=green")
 vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 -- vim.cmd([[colorscheme elflord]])

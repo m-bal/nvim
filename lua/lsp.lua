@@ -127,6 +127,9 @@ lsp.texlab.setup({
 lsp.tsserver.setup({
 	on_attach = on_attach,
 })
+-- lsp.vtsls.setup({
+-- 	on_attach = on_attach,
+-- })
 
 -- ccls works a lot better than clangd with lsp
 -- lsp.ccls.setup {
@@ -157,15 +160,6 @@ require("nvim-treesitter.configs").setup({
 	enabled_installed = "all",
 	highlight = {
 		enable = true,
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "<CR>",
-			scope_incremental = "<CR>",
-			node_incremental = "<TAB>",
-			node_decremental = "<S-TAB>",
-		},
 	},
 	textobjects = {
 		select = {
