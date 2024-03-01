@@ -31,10 +31,10 @@ require("flatten").setup({
 	},
 })
 require("treesitter-context")
-require("eyeliner").setup({
-	highlight_on_key = true, -- show highlights only after keypress
-	dim = true, -- dim all other characters if set to true (recommended!)
-})
+-- require("eyeliner").setup({
+-- 	highlight_on_key = true, -- show highlights only after keypress
+-- 	dim = true, -- dim all other characters if set to true (recommended!)
+-- })
 require("custom.null-ls")
 require("go").setup()
 require("neogit").setup({
@@ -60,7 +60,19 @@ require("project_nvim").setup({
 require("mini.trailspace").setup()
 require("mini.indentscope").setup()
 require("mini.pairs").setup()
-require("mini.jump2d").setup()
+require("hop").setup({})
+-- require("mini.jump2d").setup({
+-- 	mappings = {
+-- 		start_jumping = ";",
+-- 	},
+-- 	view = {
+-- 		-- Whether to dim lines with at least one jump spot
+-- 		dim = false,
+--
+-- 		-- How many steps ahead to show. Set to big number to show all steps.
+-- 		n_steps_ahead = 0,
+-- 	},
+-- })
 require("overseer").setup({
 	task_list = {
 		-- Default detail level for tasks. Can be 1-3.

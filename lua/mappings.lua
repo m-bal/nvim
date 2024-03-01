@@ -163,3 +163,24 @@ vim.cmd([[
 --     hi DiffChange       ctermbg=238  ctermfg=178  cterm=UNDERLINE   guibg=#3c4855 guifg=#d5bc02 gui=UNDERLINE
 --     hi DiffText         ctermbg=178  ctermfg=238  cterm=NONE        guibg=#d5bc02 guifg=#3c4855 gui=NONE
 -- ]]
+--
+local hop = require("hop")
+local directions = require("hop.hint").HintDirection
+-- vim.keymap.set("", "f", function()
+-- 	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+-- end, { remap = true })
+-- vim.keymap.set("", "F", function()
+-- 	hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+-- end, { remap = true })
+-- vim.keymap.set("", "t", function()
+-- 	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+-- end, { remap = true })
+-- vim.keymap.set("", "T", function()
+-- 	hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+-- end, { remap = true })
+vim.keymap.set("", ";", function()
+	hop.hint_lines({ current_line_only = false })
+end, { remap = true })
+vim.keymap.set("", ",", function()
+	hop.hint_anywhere({})
+end, { remap = true })

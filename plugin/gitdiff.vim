@@ -1,5 +1,5 @@
 command! DiffHistory call s:view_git_history()
-map <silent>; <Plug>LineLetters
+" map <silent>; <Plug>LineLetters
 
 function! s:view_git_history() abort
   Git difftool --name-only ! !^@
