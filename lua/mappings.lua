@@ -53,6 +53,7 @@ vim.api.nvim_set_keymap("n", "<leader>zm", ":lua toggleZoom()<CR>", { silent = f
 vim.api.nvim_set_keymap("n", "<leader>dh", ":DiffHistory<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<leader>mp", ":Telescope man_pages<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "-", ":Dirbuf %<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<leader>ts", ":Telescope spell_suggest<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>sym", ":Telescope lsp_document_symbols<CR>", { silent = true })
 -- Set neovim pwd to terminal path
 vim.api.nvim_set_keymap("n", "<leader>cp", 'iclear<CR>pwd<CR>;ggjyy:cd <C-r>"<CR>', { silent = false })

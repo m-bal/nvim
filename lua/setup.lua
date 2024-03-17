@@ -9,7 +9,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.ignorecase = true
 vim.o.hlsearch = false
-vim.o.background = "dark"
+vim.o.background = "light"
 vim.o.hidden = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 5
@@ -256,22 +256,11 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
--- vim.cmd([[colorscheme dracula]])
--- vim.cmd([[colorscheme default]])
--- vim.cmd([[colorscheme desert]])
---
 vim.cmd([[colorscheme synthweave-transparent]])
--- vim.cmd([[colorscheme darkblue]])
--- vim.cmd([[colorscheme farout]])
--- vim.cmd([[colorscheme elflord]])
--- vim.cmd([[colorscheme minischeme]])
--- vim.cmd([[colorscheme orbital]])
--- vim.cmd([[colorscheme preto]])
 vim.cmd([[command! G Neogit]])
 vim.cmd("highlight Cursor guifg=black guibg=red")
 vim.cmd("highlight MatchParen guifg=red guibg=None")
 vim.cmd("highlight Cursor2 guifg=green guibg=green")
 vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
--- vim.cmd([[colorscheme elflord]])
 
 -- vim.cmd('set rtp+=~/Projects/highlighter')
