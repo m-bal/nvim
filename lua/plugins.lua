@@ -7,6 +7,9 @@ return {
 	{ "m-bal/orange" },
 	{ "Mofiqul/dracula.nvim" },
 	{ "ellisonleao/gruvbox.nvim" },
+	{
+	    "samharju/synthweave.nvim",
+	},
 
 	{ "glepnir/galaxyline.nvim", branch = "main" },
 
