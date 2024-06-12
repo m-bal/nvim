@@ -1,5 +1,6 @@
 return {
 	-- Color schemes
+	{ "tpope/vim-vividchalk" },
 	{ "ewilazarus/preto" },
 	{ "fcpg/vim-fahrenheit" },
 	{ "fcpg/vim-farout" },
@@ -8,10 +9,11 @@ return {
 	{ "Mofiqul/dracula.nvim" },
 	{ "ellisonleao/gruvbox.nvim" },
 	{
-	    "samharju/synthweave.nvim",
+		"samharju/synthweave.nvim",
 	},
 
 	{ "glepnir/galaxyline.nvim", branch = "main" },
+	{ "tpope/vim-rsi" },
 
 	{
 		"nvim-telescope/telescope.nvim",
@@ -62,12 +64,13 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
+		commit = "b2c96fe2c590f299f47618a791a4abe190ca6467",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 		},
 	},
-	{ "ray-x/go.nvim" },
+	-- { "ray-x/go.nvim" },
 	{ "echasnovski/mini.nvim", version = false },
 	{ "echasnovski/mini.trailspace", version = false },
 	{ "echasnovski/mini.indentscope", version = false },

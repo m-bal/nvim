@@ -9,12 +9,13 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.ignorecase = true
 vim.o.hlsearch = false
-vim.o.background = "light"
+vim.o.background = "dark"
 vim.o.hidden = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
 vim.opt.foldenable = false
+vim.wo.foldtext = ""
 vim.opt.lazyredraw = off
 vim.o.cmdheight = 2
 vim.o.pumblend = 0
@@ -256,7 +257,9 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme synthweave-transparent]])
+-- vim.cmd([[colorscheme synthweave-transparent]])
+-- vim.cmd([[colorscheme randomhue]])
+vim.cmd([[colorscheme vividchalk]])
 vim.cmd([[command! G Neogit]])
 vim.cmd("highlight Cursor guifg=black guibg=red")
 vim.cmd("highlight MatchParen guifg=red guibg=None")

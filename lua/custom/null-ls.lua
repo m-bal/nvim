@@ -46,7 +46,7 @@ null_ls.setup({
 		-- 	-- extra_args = { "--config", vim.fn.expand(vim.fn.getcwd() .. "/python") },
 		-- }),
 		null_ls.builtins.diagnostics.flake8.with({
-			extra_args = { "--config", vim.fn.expand(vim.fn.getcwd() .. "/behave/.flake8") },
+			extra_args = { "--config", vim.fn.expand(vim.fn.getcwd() .. "/python/.flake8") },
 		}),
 	},
 	on_attach = function(client, bufnr)

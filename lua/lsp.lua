@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
 		"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
 		opts
 	)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -39,12 +39,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	signs = false,
 })
 
-local servers = { "dockerls" }
-for _, server in ipairs(servers) do
-	lsp[server].setup({
-		on_attach = on_attach,
-	})
-end
+--local servers = { "dockerls" }
+--for _, server in ipairs(servers) do
+--	lsp[server].setup({
+--		on_attach = on_attach,
+--	})
+--end
 
 lsp.bashls.setup({
 	on_attach = on_attach,
@@ -84,6 +84,13 @@ lsp.bashls.setup({
 lsp.pyright.setup({
 	on_attach = on_attach,
 	settings = {
+
+		analysis = {
+			autoSearchPaths = true,
+			diagnosticMode = "workspace",
+			useLibraryCodeForTypes = true,
+			typeCheckingMode = "strict",
+		},
 		venvPath = "/home/manvir/dev3.8",
 		executionEnvironments = {
 			{
@@ -96,6 +103,7 @@ lsp.pyright.setup({
 		},
 	},
 })
+lsp.cucumber_language_server.setup({})
 
 lsp.golangci_lint_ls.setup({
 	init_options = {
@@ -105,15 +113,19 @@ lsp.golangci_lint_ls.setup({
 
 lsp.gopls.setup({
 	on_attach = on_attach,
-	root_dir = lsp.util.root_pattern("go.work", "go.mod", ".git"),
+	--root_dir = lsp.util.root_pattern(".git"),
 	setttings = {
 		gopls = {
 			completeUnimported = true,
+			languageServerExperimentalFeatures = {
+				format = false,
+			},
 			usePlaceholders = true,
 			analyses = {
 				unusedparams = true,
 			},
 			staticcheck = true,
+			gofumpt = true,
 		},
 	},
 })
@@ -204,7 +216,7 @@ lsp.clangd.setup({
 		"--header-insertion=iwyu",
 		"-j=10",
 	},
-	root_dir = lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", "configure.ac", ".git"),
+	--root_dir = lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", "configure.ac", ".git"),
 	filetypes = { "c", "cpp", "hpp" },
 	compilationDatabaseDirectory = "./builds/dbg-x86",
 })

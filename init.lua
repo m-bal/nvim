@@ -36,7 +36,7 @@ require("treesitter-context")
 -- 	dim = true, -- dim all other characters if set to true (recommended!)
 -- })
 require("custom.null-ls")
-require("go").setup()
+-- require("go").setup()
 require("neogit").setup({
 	disable_signs = true,
 	use_telescope = true,
