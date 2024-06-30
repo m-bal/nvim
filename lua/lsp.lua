@@ -196,9 +196,7 @@ require("nvim-treesitter.configs").setup({
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = { "org" }, -- < This one
 	},
-	ensure_installed = { "org" },
 })
 
 lsp.clangd.setup({

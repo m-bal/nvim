@@ -13,6 +13,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ { import = "plugins" } })
 --require('highlighter').setup()
+require("telekasten").setup({
+    take_over_my_home = false,
+	home = vim.fn.expand("~/notes"),
+})
 require("custom.telescope")
 require("setup")
 require("custom.trouble")
@@ -20,7 +24,11 @@ require("lsp")
 require("custom.oil")
 require("mappings")
 require("custom.cmp")
-require("nvim-treesitter")
+require("nvim-treesitter").setup({
+	sync_install = false,
+	highlight = { enable = true },
+	indent = { enable = true },
+})
 --require("custom.statusline.private_init")
 require("custom.evilline")
 require("comments")
@@ -119,66 +127,7 @@ require("overseer").setup({
 	},
 	templates = { "builtin", "py-format", "py-lint" },
 })
--- require( 'neorg' ).setup {
---     load = {
---         ["core.defaults"] = {},
---         ["core.ui"] = {},
---         ["core.highlights"] = {
---             config = {
---                 highlights = {
---                     headings = {
---                         ["1"] = {
---                             title = "+TSTitle",
---                             prefix = "+TSTitle",
---                         },
---                     },
---                     quotes = {
---                         ["1"] = {
---                             prefix = "+Grey",
---                             content = "+Grey",
---                         },
---                     },
---                 },
---             },
---         },
---         ["core.keybinds"] = {
---             config = {
---                 defaults_keybinds = true,
---                 neorg_leader = "<Leader>o"
---             }
---         },
---         ["core.concealer"] = {},
---         ["core.completion"] = {
---             config = {
---                 engine = "nvim-cmp",
---             },
---         },
---         ["core.dirman"] = {
---             config = {
---                 workspaces = {
---                     org = "~/Org",
---                 },
---                 autodetect = true,
---                 autochdir = true,
---             },
---         },
---         -- ["core.norg.esupports.metagen"] = {
---         --     config = {
---         --         type = "<leader>om",
---         --     },
---         -- },
---         ["core.presenter"] = {
---             config = {
---                 zen_mode = "zen-mode",
---             }
---         },
---         ["core.qol.toc"] = {},
---         -- ["core.export"] = {},
---         -- ["core.export.markdown"] = {
---         --     config = {
---         --         extensions = "all",
---         --     },
---         -- },
---         ["core.ui.calendar"] = {},
---     },
---
+
+require('render-markdown').setup({
+    file_types = { 'markdown' },
+})
