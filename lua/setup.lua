@@ -265,6 +265,5 @@ vim.cmd("highlight Cursor guifg=black guibg=red")
 vim.cmd("highlight MatchParen guifg=red guibg=None")
 vim.cmd("highlight Cursor2 guifg=green guibg=green")
 vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
-vim.cmd('au BufEnter ' .. vim.fn.expand("~/notes") .. '/*' .. '.md' .. ' set ft=markdown')
 
 -- vim.cmd('set rtp+=~/Projects/highlighter')

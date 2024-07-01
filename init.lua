@@ -14,8 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ { import = "plugins" } })
 --require('highlighter').setup()
 require("telekasten").setup({
-    take_over_my_home = false,
+	take_over_my_home = false,
 	home = vim.fn.expand("~/notes"),
+	auto_set_filetype = false,
 })
 require("custom.telescope")
 require("setup")
@@ -48,9 +49,9 @@ require("custom.null-ls")
 require("neogit").setup({
 	disable_signs = true,
 	use_telescope = true,
-	telescope_sorter = function()
-		return require("telescope").extensions.fzf.native_fzf_sorter()
-	end,
+	-- telescope_sorter = function()
+	-- 	return require("telescope").extensions.fzf.native_fzf_sorter()
+	-- end,
 	graph_style = "unicode",
 	disable_insert_on_commit = true,
 	kind = "split",
@@ -128,6 +129,6 @@ require("overseer").setup({
 	templates = { "builtin", "py-format", "py-lint" },
 })
 
-require('render-markdown').setup({
-    file_types = { 'markdown' },
+require("render-markdown").setup({
+	file_types = { "markdown" },
 })
