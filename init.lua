@@ -1,3 +1,4 @@
+vim.g.maplocalleader = ","
 vim.g.mapleader = " "
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -22,6 +23,7 @@ require("custom.telescope")
 require("setup")
 require("custom.trouble")
 require("lsp")
+require("colorizer").setup()
 require("custom.oil")
 require("mappings")
 require("custom.cmp")

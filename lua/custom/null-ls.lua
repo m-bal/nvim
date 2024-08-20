@@ -50,6 +50,7 @@ null_ls.setup({
 		}),
 	},
 	on_attach = function(client, bufnr)
+		-- vim.treesitter.stop()
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({
 				group = augroup,

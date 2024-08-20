@@ -5,6 +5,7 @@ function extendMap(mode, prefix, suffixCmd, opt)
 	end
 end
 
+vim.api.nvim_set_keymap("n", "<leader>ztt", ":Telekasten toggle_todo<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>zn", ":Telekasten new_note<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>zw", ":Telekasten goto_thisweek<CR><CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>zd", ":Telekasten goto_today<CR><CR>", { silent = true })

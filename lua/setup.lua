@@ -3,8 +3,9 @@ vim.g.vem_tabline_multiwindow_mode = 1
 vim.g.vem_tabline_show_number = "index"
 vim.g.vem_tabline_show_icon = 0
 
+vim.o.fillchars = "vert:|,fold:-,eob:~"
 vim.o.autochdir = true
-vim.o.ruler = false
+vim.o.ruler = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.ignorecase = true
@@ -180,7 +181,7 @@ require("gruvbox").setup({
 	overrides = {
 		-- Normal = {bg = "#0E1018"},
 		Normal = { bg = "NONE" },
-		VertSplit = { bg = "#0E1018" },
+		-- VertSplit = { bg = "#0E1018" },
 		SignColumn = { bg = "#ff9900" },
 		Define = { link = "GruvboxPurple" },
 		Macro = { link = "GruvboxPurple" },
@@ -257,13 +258,15 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
--- vim.cmd([[colorscheme synthweave-transparent]])
+vim.cmd([[colorscheme oxide]])
 -- vim.cmd([[colorscheme randomhue]])
-vim.cmd([[colorscheme darkblue]])
+-- vim.cmd([[colorscheme vim]])
+-- vim.cmd([[colorscheme dayfox]])
+-- vim.cmd([[colorscheme catppuccin]])
 vim.cmd([[command! G Neogit]])
-vim.cmd("highlight Cursor guifg=black guibg=red")
+vim.cmd("highlight Cursor guifg=black guibg=white")
 vim.cmd("highlight MatchParen guifg=red guibg=None")
-vim.cmd("highlight Cursor2 guifg=green guibg=green")
+vim.cmd("highlight Cursor2 guifg=white guibg=white")
 vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 
 -- vim.cmd('set rtp+=~/Projects/highlighter')

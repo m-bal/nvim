@@ -1,8 +1,10 @@
 lsp = require("lspconfig")
 local configs = require("lspconfig/configs")
 
+--vim.lsp.client().server_capabilities.semanticTokensProvider = nil
 local on_attach = function(client, bufnr)
 	-- require('cmp_nvim_lsp').on_attach()
+	-- vim.treesitter.stop()
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	-- Mappings.
 	local opts = { noremap = true, silent = true }
@@ -59,50 +61,55 @@ lsp.bashls.setup({
 	},
 })
 
--- lsp.pylsp.setup({
--- 	on_attach = on_attach,
--- 	settings = {
--- 		pylsp = {
--- 			plugins = {
--- 				flake8 = {
--- 					enabled = true,
--- 				},
--- 				pylint = {
--- 					enabled = true,
--- 				},
--- 				jedi = {
--- 					environemnt = "python3",
--- 				},
--- 				jedi_completion = {
--- 					enabled = true,
--- 				},
--- 			},
--- 		},
--- 	},
--- })
-
-lsp.pyright.setup({
+lsp.pylsp.setup({
+	on_init = function(client, initialization_result)
+		if client.server_capabilities then
+			client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+		end
+	end,
 	on_attach = on_attach,
 	settings = {
-
-		analysis = {
-			autoSearchPaths = true,
-			diagnosticMode = "workspace",
-			useLibraryCodeForTypes = true,
-			typeCheckingMode = "strict",
-		},
-		venvPath = "/home/manvir/dev3.8",
-		executionEnvironments = {
-			{
-				root = "~",
-				venv = "~",
-				extraPaths = {
-					"/home/manvir/dev3.8/lib/python3.8/site-packages",
+		pylsp = {
+			plugins = {
+				flake8 = {
+					enabled = true,
+				},
+				pylint = {
+					enabled = true,
+				},
+				jedi = {
+					environemnt = "python3.9",
+				},
+				jedi_completion = {
+					enabled = true,
 				},
 			},
 		},
 	},
 })
+
+-- lsp.pyright.setup({
+-- 	on_attach = on_attach,
+-- 	settings = {
+--
+-- 		analysis = {
+-- 			autoSearchPaths = true,
+-- 			diagnosticMode = "workspace",
+-- 			useLibraryCodeForTypes = true,
+-- 			typeCheckingMode = "strict",
+-- 		},
+-- 		-- venvPath = "/home/manvir/dev3.8",
+-- 		-- executionEnvironments = {
+-- 		-- 	{
+-- 		-- 		root = "~",
+-- 		-- 		venv = "~",
+-- 		-- 		extraPaths = {
+-- 		-- 			"/usr/local/lib/python3.9/site-packages",
+-- 		-- 		},
+-- 		-- 	},
+-- 		-- },
+-- 	},
+-- })
 lsp.cucumber_language_server.setup({})
 
 lsp.golangci_lint_ls.setup({
@@ -176,23 +183,6 @@ lsp.tsserver.setup({
 --     }
 -- }
 
-require("nvim-treesitter.configs").setup({
-	enabled_installed = "all",
-	highlight = {
-		enable = true,
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = {
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-	},
-})
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
