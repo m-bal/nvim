@@ -99,6 +99,11 @@ require("telescope").setup({
 		},
 		file_browser = {
 			-- theme = "dropdown",
+            mappings = {
+                i = {
+                    ["<C-t>"] = actions.select_tab
+                }
+            }
 		},
 		live_grep_args = {
 			auto_quoting = true,
@@ -140,7 +145,6 @@ require("telescope").setup({
 		},
 	},
 })
-
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("hop")
 

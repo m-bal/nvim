@@ -1,5 +1,6 @@
 vim.g.maplocalleader = ","
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -134,3 +135,177 @@ require("overseer").setup({
 require("render-markdown").setup({
 	file_types = { "markdown" },
 })
+-- require( 'neorg' ).setup {
+--     load = {
+--         ["core.defaults"] = {},
+--         ["core.ui"] = {},
+--         ["core.highlights"] = {
+--             config = {
+--                 highlights = {
+--                     headings = {
+--                         ["1"] = {
+--                             title = "+TSTitle",
+--                             prefix = "+TSTitle",
+--                         },
+--                     },
+--                     quotes = {
+--                         ["1"] = {
+--                             prefix = "+Grey",
+--                             content = "+Grey",
+--                         },
+--                     },
+--                 },
+--             },
+--         },
+--         ["core.keybinds"] = {
+--             config = {
+--                 defaults_keybinds = true,
+--                 neorg_leader = "<Leader>o"
+--             }
+--         },
+--         ["core.concealer"] = {},
+--         ["core.completion"] = {
+--             config = {
+--                 engine = "nvim-cmp",
+--             },
+--         },
+--         ["core.dirman"] = {
+--             config = {
+--                 workspaces = {
+--                     org = "~/Org",
+--                 },
+--                 autodetect = true,
+--                 autochdir = true,
+--             },
+--         },
+--         -- ["core.norg.esupports.metagen"] = {
+--         --     config = {
+--         --         type = "<leader>om",
+--         --     },
+--         -- },
+--         ["core.presenter"] = {
+--             config = {
+--                 zen_mode = "zen-mode",
+--             }
+--         },
+--         ["core.qol.toc"] = {},
+--         -- ["core.export"] = {},
+--         -- ["core.export.markdown"] = {
+--         --     config = {
+--         --         extensions = "all",
+--         --     },
+--         -- },
+--         ["core.ui.calendar"] = {},
+--     },
+--
+-- require( 'neorg' ).setup {
+--     load = {
+--         ["core.defaults"] = {},
+--         ["core.ui"] = {},
+--         ["core.highlights"] = {
+--             config = {
+--                 highlights = {
+--                     headings = {
+--                         ["1"] = {
+--                             title = "+TSTitle",
+--                             prefix = "+TSTitle",
+--                         },
+--                     },
+--                     quotes = {
+--                         ["1"] = {
+--                             prefix = "+Grey",
+--                             content = "+Grey",
+--                         },
+--                     },
+--                 },
+--             },
+--         },
+--         ["core.keybinds"] = {
+--             config = {
+--                 defaults_keybinds = true,
+--                 neorg_leader = "<Leader>o"
+--             }
+--         },
+--         ["core.concealer"] = {},
+--         ["core.completion"] = {
+--             config = {
+--                 engine = "nvim-cmp",
+--             },
+--         },
+--         ["core.dirman"] = {
+--             config = {
+--                 workspaces = {
+--                     org = "~/Org",
+--                 },
+--                 autodetect = true,
+--                 autochdir = true,
+--             },
+--         },
+--         -- ["core.norg.esupports.metagen"] = {
+--         --     config = {
+--         --         type = "<leader>om",
+--         --     },
+--         -- },
+--         ["core.presenter"] = {
+--             config = {
+--                 zen_mode = "zen-mode",
+--             }
+--         },
+--         ["core.qol.toc"] = {},
+--         -- ["core.export"] = {},
+--         -- ["core.export.markdown"] = {
+--         --     config = {
+--         --         extensions = "all",
+--         --     },
+--         -- },
+--         ["core.ui.calendar"] = {},
+--     },
+--
+require("mason").setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
+require("nvim-tree").setup()
+-- require("codecompanion").setup({
+-- 	strategies = {
+-- 		chat = {
+-- 			adapter = "deepseek",
+-- 		},
+-- 		inline = {
+-- 			adapter = "deepseek",
+-- 		},
+-- 	},
+-- 	adapters = {
+-- 		deepseek = function()
+-- 			return require("codecompanion.adapters").extend("ollama", {
+-- 				env = {
+-- 					url = "http://localhost:11435",
+-- 					chat_url = "/api/generate",
+-- 				},
+-- 				name = "deepseek-r1", -- Give this adapter a different name to differentiate it from the default ollama adapter
+-- 				schema = {
+-- 					model = {
+-- 						default = "deepseek-r1:14b",
+-- 					},
+-- 					num_ctx = {
+-- 						default = 75000,
+-- 					},
+-- 					num_predict = {
+-- 						default = -1,
+-- 					},
+-- 				},
+-- 			})
+-- 		end,
+-- 	},
+-- 	opts = {
+-- 		-- Set debug logging
+-- 		log_level = "DEBUG",
+-- 	},
+-- })
+require("beacon").setup()
+require("scope").setup({})

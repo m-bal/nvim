@@ -1,3 +1,4 @@
+let g:grammarous#jar_url = 'https://www.languagetool.org/download/archive/LanguageTool-5.9.zip'
 command! DiffHistory call s:view_git_history()
 " map <silent>; <Plug>LineLetters
 

@@ -48,6 +48,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 --	})
 --end
 
+-- require("lspconfig").ltex.setup({
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		ltex = {
+-- 			enabled = true,
+-- 			language = "en-US",
+-- 			additionalRules = {
+-- 				checkFrequency = "save",
+-- 			},
+-- 		},
+-- 	},
+-- })
 lsp.bashls.setup({
 	on_attach = on_attach,
 	filetypes = {
@@ -110,13 +122,36 @@ lsp.pylsp.setup({
 -- 		-- },
 -- 	},
 -- })
-lsp.cucumber_language_server.setup({})
 
-lsp.golangci_lint_ls.setup({
-	init_options = {
-		command = { "gci", "overwrite", "-s", "standard", "-s", "default", "-s", "prefix(github.com/daixiang0/gci)" },
+lsp.pyright.setup({
+	on_attach = on_attach,
+	settings = {
+
+		analysis = {
+			autoSearchPaths = true,
+			diagnosticMode = "workspace",
+			useLibraryCodeForTypes = true,
+			typeCheckingMode = "strict",
+		},
+		venvPath = "/home/manvir/miniconda3",
+		executionEnvironments = {
+			{
+				root = "~",
+				venv = "~",
+				extraPaths = {
+					"/home/manvir/miniconda3/lib/python3.12/site-packages",
+				},
+			},
+		},
 	},
 })
+lsp.cucumber_language_server.setup({})
+
+-- lsp.golangci_lint_ls.setup({
+-- 	init_options = {
+-- 		command = { "gci", "overwrite", "-s", "standard", "-s", "default", "-s", "prefix(github.com/daixiang0/gci)" },
+-- 	},
+-- })
 
 lsp.gopls.setup({
 	on_attach = on_attach,
@@ -132,7 +167,6 @@ lsp.gopls.setup({
 				unusedparams = true,
 			},
 			staticcheck = true,
-			gofumpt = true,
 		},
 	},
 })
@@ -151,7 +185,7 @@ lsp.eslint.setup({
 		})
 	end,
 })
-lsp.tsserver.setup({
+lsp.ts_ls.setup({
 	on_attach = on_attach,
 })
 -- lsp.vtsls.setup({
@@ -184,10 +218,29 @@ lsp.tsserver.setup({
 -- }
 
 require("nvim-treesitter.configs").setup({
+	enabled_installed = "all",
 	highlight = {
 		enable = true,
 	},
+	textobjects = {
+		select = {
+			enable = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+			},
+		},
+	},
 })
+-- require("nvim-treesitter.configs").setup({
+-- 	highlight = {
+-- 		enable = false,
+-- 		additional_vim_regex_highlighting = { "org" }, -- < This one
+-- 	},
+-- 	ensure_installed = { "org" },
+-- })
 
 lsp.clangd.setup({
 	on_attach = on_attach,
