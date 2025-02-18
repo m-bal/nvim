@@ -30,7 +30,7 @@ fileName = fileinfo.get_current_file_name
 gls.left[0] = {
 	FileName = {
 		provider = fileName,
-		highlight = { colors.bg, colors.fg },
+		highlight = { colors.bg, colors.green },
 	},
 }
 vim.cmd("highlight WinSeparator guifg=#bbc2cf guibg=NONE")

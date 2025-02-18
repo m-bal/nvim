@@ -155,7 +155,7 @@ lsp.cucumber_language_server.setup({})
 
 lsp.gopls.setup({
 	on_attach = on_attach,
-	--root_dir = lsp.util.root_pattern(".git"),
+	root_dir = lsp.util.root_pattern(".git"),
 	setttings = {
 		gopls = {
 			completeUnimported = true,

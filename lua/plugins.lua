@@ -3,12 +3,6 @@ return {
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "EdenEast/nightfox.nvim" },
 	-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-	{
-		"theamallalgi/zitchdog",
-		lazy = false,
-		priority = 1000,
-		commit = "d0c89ca586073724916e2ab95e613f5da6d6a50c",
-	},
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
 	{ "tpope/vim-vividchalk" },
 	{ "ewilazarus/preto" },
@@ -59,7 +53,7 @@ return {
 	{ "onsails/lspkind-nvim" },
 	{ "hrsh7th/nvim-cmp", commit = "fae808a2bca079ea9454f33cb1e2db81c59e102b" },
 	{ "nvim-telescope/telescope-fzy-native.nvim" },
-	{ "tpope/vim-fugitive" },
+	-- { "tpope/vim-fugitive" },
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-unimpaired" },
 	{ "tpope/vim-endwise" },
@@ -71,9 +65,10 @@ return {
 	{
 		"stevearc/oil.nvim",
 	},
-	{
-		"jinh0/eyeliner.nvim",
-	},
+	-- {
+	-- 	"jinh0/eyeliner.nvim",
+	-- },
+	{ "lewis6991/gitsigns.nvim" },
 	{
 		"NeogitOrg/neogit",
 		-- commit = "b2c96fe2c590f299f47618a791a4abe190ca6467",
@@ -83,20 +78,20 @@ return {
 		},
 	},
 	-- { "ray-x/go.nvim" },
-	{ "echasnovski/mini.nvim", version = false },
-	{ "echasnovski/mini.trailspace", version = false },
-	{ "echasnovski/mini.indentscope", version = false },
-	{ "echasnovski/mini.pairs", version = false },
+	-- { "echasnovski/mini.nvim", version = false },
+	-- { "echasnovski/mini.trailspace", version = false },
+	-- { "echasnovski/mini.indentscope", version = false },
+	-- { "echasnovski/mini.pairs", version = false },
 	{
 		"smoka7/hop.nvim",
 		version = "*",
 		opts = {},
 	},
 
-	{
-		"stevearc/overseer.nvim",
-		opts = {},
-	},
+	-- {
+	-- 	"stevearc/overseer.nvim",
+	-- 	opts = {},
+	-- },
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
@@ -110,33 +105,28 @@ return {
 		"nvim-telekasten/telekasten.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-telekasten/calendar-vim" },
 	},
-	{
-		"MagicDuck/grug-far.nvim",
-		config = function()
-			require("grug-far").setup({})
-		end,
-	},
-		"MagicDuck/grug-far.nvim",
-		config = function()
-			require("grug-far").setup({
-				-- options, see Configuration section below
-				-- there are no required options atm
-				-- engine = 'ripgrep' is default, but 'astgrep' can be specified
-			})
-		end,
-	},
-	{
-		"williamboman/mason.nvim",
-	},
+	-- {
+	-- 	"MagicDuck/grug-far.nvim",
+	-- 	config = function()
+	-- 		require("grug-far").setup({
+	-- 			-- options, see Configuration section below
+	-- 			-- there are no required options atm
+	-- 			-- engine = 'ripgrep' is default, but 'astgrep' can be specified
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"williamboman/mason.nvim",
+	-- },
 	{ "rhysd/vim-grammarous" },
 	{ "nvim-tree/nvim-tree.lua" },
-	{
-		"julienvincent/hunk.nvim",
-		cmd = { "DiffEditor" },
-		config = function()
-			require("hunk").setup()
-		end,
-	},
+	-- {
+	-- 	"julienvincent/hunk.nvim",
+	-- 	cmd = { "DiffEditor" },
+	-- 	config = function()
+	-- 		require("hunk").setup()
+	-- 	end,
+	-- },
 	{ "tiagovla/scope.nvim", config = true },
 
 	-- {
