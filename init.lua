@@ -13,6 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 require("lazy").setup({ { import = "plugins" } })
 --require('highlighter').setup()
 require("custom.telescope")
@@ -63,5 +64,5 @@ require("hop").setup({})
 require("render-markdown").setup({
 	file_types = { "markdown" },
 })
-require("beacon").setup()
+
 require("scope").setup({})

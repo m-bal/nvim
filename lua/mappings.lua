@@ -156,7 +156,7 @@ vim.cmd([[
 vim.cmd([[
     " highlight Normal guibg=#1e222b
     " highlight NonText guibg=#1e222b
-    highlight LineNr guifg=#acafb0 guibg=NONE
+    " highlight LineNr guifg=#acafb0 guibg=NONE
 ]])
 --
 -- vim.cmd[[

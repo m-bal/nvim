@@ -19,7 +19,7 @@ return {
 	{ "glepnir/galaxyline.nvim", branch = "main" },
 	{ "tpope/vim-rsi" },
 
-	{ "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
+	-- { "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -127,13 +127,28 @@ return {
 	-- 	end,
 	-- },
 	{ "tiagovla/scope.nvim", config = true },
+    -- Lua
 
-	-- {
-	-- 	"olimorris/codecompanion.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 	},
-	-- 	config = true,
-	-- },
+    {
+      'rmagatti/auto-session',
+      lazy = false,
+      keys = {
+        -- Will use Telescope if installed or a vim.ui.select picker otherwise
+        { '<leader>wr', '<cmd>SessionSearch<CR>', desc = 'Session search' },
+        { '<leader>ws', '<cmd>SessionSave<CR>', desc = 'Save session' },
+        { '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
+      },
+
+      ---enables autocomplete for opts
+      ---@module "auto-session"
+      ---@type AutoSession.Config
+      opts = {
+        use_git_branch = true,
+        auto_save = false,
+        auto_restore = false,
+        show_auto_restore_notif = true,
+        suppressed_dirs = { '~/', '/' },
+        cwd_change_handling = true,
+      }
+    },
 }
