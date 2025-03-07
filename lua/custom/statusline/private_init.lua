@@ -39,25 +39,25 @@ viMode = vimode.get_mode
 viModeSeperator = vimode.seperator
 righttriangle = u.righttriangle
 
-gls.left[1] = {
-	Space = {
-		provider = space,
-		highlight = { c.Color("blue"), c.Color("blue") },
-	},
-}
-gls.left[2] = {
-	ViMode = {
-		provider = viMode,
-		highlight = { c.Color("white"), c.Color("DarkGoldenrod2"), "bold" },
-	},
-}
-
-gls.left[3] = {
-	righttriangle = {
-		provider = righttriangle,
-		highlight = { c.Color("blue"), c.Color("DarkGoldenrod2") },
-	},
-}
+-- gls.left[1] = {
+-- 	Space = {
+-- 		provider = space,
+-- 		highlight = { c.Color("blue"), c.Color("blue") },
+-- 	},
+-- }
+-- gls.left[2] = {
+-- 	ViMode = {
+-- 		provider = viMode,
+-- 		highlight = { c.Color("white"), c.Color("DarkGoldenrod2"), "bold" },
+-- 	},
+-- }
+--
+-- gls.left[3] = {
+-- 	righttriangle = {
+-- 		provider = righttriangle,
+-- 		highlight = { c.Color("blue"), c.Color("DarkGoldenrod2") },
+-- 	},
+-- }
 
 -- gls.left[3] = {
 --     -- FileSize = {
@@ -67,15 +67,15 @@ gls.left[3] = {
 --     -- }
 -- }
 
-gls.left[4] = {
-	FileName = {
-		provider = fileName,
-		seperator = " | ",
-		-- condition = u.buffer_not_empty,
-		separator_highlight = { c.Color("purple"), c.Color("act1") },
-		highlight = { c.Color("black"), c.Color("DarkGoldenrod2") },
-	},
-}
+-- gls.left[4] = {
+-- 	FileName = {
+-- 		provider = fileName,
+-- 		seperator = " | ",
+-- 		-- condition = u.buffer_not_empty,
+-- 		-- separator_highlight = { c.Color("purple"), c.Color("act1") },
+-- 		-- highlight = { c.Color("black"), c.Color("DarkGoldenrod2") },
+-- 	},
+-- }
 
 -- gls.left[4] = {
 --     FiletTypeSeperator = {

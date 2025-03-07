@@ -1,5 +1,24 @@
 return {
 	-- Color schemes
+    {
+        "jackplus-xyz/binary.nvim",
+        opts = {
+            -- Add your configuration here
+            style= "dark",
+            -- colors = {
+            --   fg = "#0049C6",
+            --   bg = "#ffffff",
+            -- },
+            -- colors = {
+            --   fg = "#2CF180",
+            --   bg = "#0E1F12",
+            -- }
+            colors = {
+                fg = "#000000",
+                bg = "#ffffff",
+            },
+        }
+    },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "EdenEast/nightfox.nvim" },
 	-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },

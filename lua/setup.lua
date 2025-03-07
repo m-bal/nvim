@@ -258,10 +258,7 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme dayfox]])
--- vim.cmd([[colorscheme vividchalk]])
--- vim.cmd([[colorscheme oxide]])
--- vim.cmd([[colorscheme randomhue]])
+vim.cmd([[colorscheme binary]])
 vim.cmd([[command! G Neogit]])
 vim.cmd("highlight Cursor guifg=black guibg=red")
 vim.cmd("highlight MatchParen guifg=red guibg=None")
