@@ -1,5 +1,12 @@
 return {
 	-- Color schemes
+    { "trusktr/seti.vim" },
+    {
+      "hyperb1iss/silkcircuit-nvim",
+      lazy = false,
+      priority = 1000,
+    },
+    { 'eemed/sitruuna.vim' },
     {
         "jackplus-xyz/binary.nvim",
         opts = {
@@ -19,7 +26,7 @@ return {
             },
         }
     },
-	{ "norcalli/nvim-colorizer.lua" },
+	-- { "norcalli/nvim-colorizer.lua" },
 	{ "EdenEast/nightfox.nvim" },
 	-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
@@ -76,7 +83,7 @@ return {
 	{ "tpope/vim-unimpaired" },
 	{ "tpope/vim-endwise" },
 	-- { "airblade/vim-rooter" },
-	{ "ahmedkhalf/project.nvim" },
+	-- { "ahmedkhalf/project.nvim" },
 	{ "numToStr/Comment.nvim" },
 	{ "willothy/flatten.nvim" },
 	{ "skamsie/vim-lineletters", commit = "ba16f726cba2c0f7cf4c094408e17a3b605f0cc7" },
@@ -110,15 +117,15 @@ return {
 	-- 	"stevearc/overseer.nvim",
 	-- 	opts = {},
 	-- },
-	{
-		"MeanderingProgrammer/markdown.nvim",
-		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- Mandatory
-			"echasnovski/mini.icons", -- Mandatory
-			-- "nvim-tree/nvim-web-devicons", -- Optional but recommended
-		},
-	},
+	-- {
+	-- 	"MeanderingProgrammer/markdown.nvim",
+	-- 	name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter", -- Mandatory
+	-- 		"echasnovski/mini.icons", -- Mandatory
+	-- 		-- "nvim-tree/nvim-web-devicons", -- Optional but recommended
+	-- 	},
+	-- },
 	{
 		"nvim-telekasten/telekasten.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-telekasten/calendar-vim" },
@@ -170,4 +177,5 @@ return {
         cwd_change_handling = true,
       }
     },
+    { 'rafikdraoui/jj-diffconflicts' },
 }

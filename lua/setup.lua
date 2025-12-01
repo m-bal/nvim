@@ -10,7 +10,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.ignorecase = true
 vim.o.hlsearch = false
-vim.o.background = "light"
+vim.o.background = "dark"
 vim.o.hidden = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 5
@@ -28,7 +28,7 @@ vim.g.netrw_fastbrowse = 0
 vim.o.termguicolors = true
 
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 vim.wo.signcolumn = "number"
 vim.wo.wrap = true
 vim.wo.cursorline = false
@@ -163,11 +163,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	command = [[setlocal nonumber norelativenumber]],
 	group = vimrc_group,
 })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	command = "setlocal spell",
-	group = vimrc_group,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "markdown",
+-- 	command = "setlocal spell",
+-- 	group = vimrc_group,
+-- })
 -- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
 -- 	command = "if &buftype != 'terminal' && mode() != 'c' | checktime | endif",
 -- 	pattern = [[^(?!term://).*]],
@@ -258,11 +258,11 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme binary]])
+vim.cmd([[colorscheme silkcircuit]])
 vim.cmd([[command! G Neogit]])
-vim.cmd("highlight Cursor guifg=black guibg=red")
-vim.cmd("highlight MatchParen guifg=red guibg=None")
-vim.cmd("highlight Cursor2 guifg=white guibg=red")
-vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
+-- vim.cmd("highlight Cursor guifg=black guibg=red")
+-- vim.cmd("highlight MatchParen guifg=red guibg=None")
+-- vim.cmd("highlight Cursor2 guifg=white guibg=red")
+-- vim.cmd("set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50")
 
 -- vim.cmd('set rtp+=~/Projects/highlighter')

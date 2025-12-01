@@ -5,6 +5,7 @@ function extendMap(mode, prefix, suffixCmd, opt)
 	end
 end
 
+vim.api.nvim_set_keymap("n", "<leader>td", ":!dict <c-r><c-w><CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ztt", ":Telekasten toggle_todo<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>zn", ":Telekasten new_note<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>zw", ":Telekasten goto_thisweek<CR><CR>", { silent = true })
@@ -153,11 +154,11 @@ vim.cmd([[
 --     " highlight NonText guibg=#00000
 --     " highlight LineNr  guifg=#acafb0 guibg=#1e222b
 -- ]]
-vim.cmd([[
-    " highlight Normal guibg=#1e222b
-    " highlight NonText guibg=#1e222b
-    " highlight LineNr guifg=#acafb0 guibg=NONE
-]])
+-- vim.cmd([[
+--     " highlight Normal guibg=#1e222b
+--     " highlight NonText guibg=#1e222b
+--     " highlight LineNr guifg=#acafb0 guibg=NONE
+-- ]])
 --
 -- vim.cmd[[
 --     autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE

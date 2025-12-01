@@ -20,7 +20,7 @@ require("custom.telescope")
 require("setup")
 require("custom.trouble")
 require("lsp")
-require("colorizer").setup()
+-- require("colorizer").setup()
 require("custom.oil")
 require("mappings")
 require("custom.cmp")
@@ -56,13 +56,16 @@ require("neogit").setup({
 		recent_commit_count = 30,
 	},
 })
-require("project_nvim").setup({
-	detection_methods = { "pattern", "lsp" },
-})
+-- require("project_nvim").setup({
+-- 	detection_methods = { "pattern", "lsp" },
+-- })
 require("hop").setup({})
 
-require("render-markdown").setup({
-	file_types = { "markdown" },
-})
+-- require("render-markdown").setup({
+-- 	file_types = { "markdown" },
+-- })
 
 require("scope").setup({})
+require("silkcircuit").setup({
+  variant = "glow", -- "neon" | "vibrant" | "soft" | "glow"
+})
