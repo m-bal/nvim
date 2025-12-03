@@ -68,7 +68,6 @@ return {
 		-- commit = '0922634d371d45c344a559119ed398f91e399085',
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
-	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-nvim-lua" },
 	{ "hrsh7th/cmp-nvim-lsp" },

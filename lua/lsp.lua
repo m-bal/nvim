@@ -1,15 +1,15 @@
-lsp = require("lspconfig")
-local configs = require("lspconfig/configs")
+local vim = vim
 
---vim.lsp.client().server_capabilities.semanticTokensProvider = nil
+-- Define capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- Common on_attach function
 local on_attach = function(client, bufnr)
-	-- require('cmp_nvim_lsp').on_attach()
-	-- vim.treesitter.stop()
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+
 	-- Mappings.
 	local opts = { noremap = true, silent = true }
 
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -29,285 +29,238 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>cd", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
-vim.api.nvim_command([[command! Format execute 'lua vim.lsp.buf.formatting()']])
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.api.nvim_create_user_command("Format", function()
+	vim.lsp.buf.format()
+end, {})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.diagnostic.on_publish_diagnostics, {
 	-- Disable signs
 	signs = false,
 })
 
---local servers = { "dockerls" }
---for _, server in ipairs(servers) do
---	lsp[server].setup({
---		on_attach = on_attach,
---	})
---end
+-- Helper function to start LSP
+local function start_lsp(name, config)
+	local defaults = {
+		name = name,
+		capabilities = capabilities,
+		on_attach = on_attach,
+		-- Default root detection
+		root_dir = vim.fs.root(0, {
+			".git",
+			"package.json",
+			"go.mod",
+			"Cargo.toml",
+			"compile_commands.json",
+			"setup.py",
+			"pyproject.toml",
+		}),
+	}
+	local final_config = vim.tbl_deep_extend("force", defaults, config)
+	vim.lsp.start(final_config)
+end
 
--- require("lspconfig").ltex.setup({
--- 	on_attach = on_attach,
--- 	settings = {
--- 		ltex = {
--- 			enabled = true,
--- 			language = "en-US",
--- 			additionalRules = {
--- 				checkFrequency = "save",
--- 			},
--- 		},
--- 	},
--- })
-lsp.bashls.setup({
-	on_attach = on_attach,
-	filetypes = {
-		"sh",
-		"bats",
-	},
-	settings = {
-		bashIde = {
-			globPattern = "*@(.sh|.inc|.bash|.command|.bats)",
-		},
-	},
-})
-
-lsp.pylsp.setup({
-	on_init = function(client, initialization_result)
-		if client.server_capabilities then
-			client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-		end
-	end,
-	on_attach = on_attach,
-	settings = {
-		pylsp = {
-			plugins = {
-				flake8 = {
-					enabled = true,
-				},
-				pylint = {
-					enabled = true,
-				},
-				jedi = {
-					environemnt = "python3.9",
-				},
-				jedi_completion = {
-					enabled = true,
+-- bashls
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "sh", "bats" },
+	callback = function()
+		start_lsp("bashls", {
+			cmd = { "bash-language-server", "start" },
+			settings = {
+				bashIde = {
+					globPattern = "*@(.sh|.inc|.bash|.command|.bats)",
 				},
 			},
-		},
-	},
-})
-
--- lsp.pyright.setup({
--- 	on_attach = on_attach,
--- 	settings = {
---
--- 		analysis = {
--- 			autoSearchPaths = true,
--- 			diagnosticMode = "workspace",
--- 			useLibraryCodeForTypes = true,
--- 			typeCheckingMode = "strict",
--- 		},
--- 		-- venvPath = "/home/manvir/dev3.8",
--- 		-- executionEnvironments = {
--- 		-- 	{
--- 		-- 		root = "~",
--- 		-- 		venv = "~",
--- 		-- 		extraPaths = {
--- 		-- 			"/usr/local/lib/python3.9/site-packages",
--- 		-- 		},
--- 		-- 	},
--- 		-- },
--- 	},
--- })
-
-lsp.pyright.setup({
-	on_attach = on_attach,
-	settings = {
-
-		analysis = {
-			autoSearchPaths = true,
-			diagnosticMode = "workspace",
-			useLibraryCodeForTypes = true,
-			typeCheckingMode = "strict",
-		},
-		venvPath = "/home/manvir/miniconda3",
-		executionEnvironments = {
-			{
-				root = "~",
-				venv = "~",
-				extraPaths = {
-					"/home/manvir/miniconda3/lib/python3.12/site-packages",
-				},
-			},
-		},
-	},
-})
-lsp.cucumber_language_server.setup({})
-
--- lsp.golangci_lint_ls.setup({
--- 	init_options = {
--- 		command = { "gci", "overwrite", "-s", "standard", "-s", "default", "-s", "prefix(github.com/daixiang0/gci)" },
--- 	},
--- })
-
-lsp.gopls.setup({
-	on_attach = on_attach,
-	root_dir = lsp.util.root_pattern(".git"),
-	setttings = {
-		gopls = {
-			completeUnimported = true,
-			languageServerExperimentalFeatures = {
-				format = false,
-			},
-			usePlaceholders = true,
-			analyses = {
-				unusedparams = true,
-			},
-			staticcheck = true,
-		},
-	},
-})
-
-lsp.texlab.setup({
-	on_attach = on_attach,
-})
--- lsp.tailwindcss.setup({
--- 	on_attach = on_attach,
--- })
-lsp.eslint.setup({
-	on_attach = function(client, bufnr)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
 		})
 	end,
 })
-lsp.ts_ls.setup({
-	on_attach = on_attach,
-})
--- lsp.vtsls.setup({
--- 	on_attach = on_attach,
--- })
 
--- ccls works a lot better than clangd with lsp
--- lsp.ccls.setup {
---     init_options = {
---         compilationDatabaseDirectory = "/home/manvir/gitlab/linear-generator/builds/dbg-x86";
---         index = {
---             threads = 10;
---         };
---         cache = {
---             directory = "/home/manvir/.cache/ccls-cache";
---         };
---     },
---
---     on_attach = on_attach,
---     default_config = {
---         cmd = {
---             "clangd", "--background-index --pch-storage=memory",
---             "--clang-tidy", "--suggest-missing-includes",
---             "--query-driver=/usr/bin/g++", "--completion-style=detailed",
---             "--cross-file-rename", "--clang-tidy", "--clang-tidy-checks=bugprone-**",
---         },
---         root_dir = "",
---         filetypes = {"c", "cpp", "hpp"},
---     }
--- }
-
-require("nvim-treesitter.configs").setup({
-	enabled_installed = "all",
-	highlight = {
-		enable = true,
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = {
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-	},
-})
--- require("nvim-treesitter.configs").setup({
--- 	highlight = {
--- 		enable = false,
--- 		additional_vim_regex_highlighting = { "org" }, -- < This one
--- 	},
--- 	ensure_installed = { "org" },
--- })
-
-lsp.clangd.setup({
-	on_attach = on_attach,
-	cmd = {
-		"clangd-15",
-		"--background-index",
-		"--pch-storage=memory",
-		"--clang-tidy",
-		"--all-scopes-completion=true",
-		"--query-driver=/usr/bin/g++",
-		"--completion-style=detailed",
-		"--compile-commands-dir=./builds/dbg-x86",
-		"--enable-config",
-		"--header-insertion=iwyu",
-		"-j=10",
-	},
-	--root_dir = lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", "configure.ac", ".git"),
-	filetypes = { "c", "cpp", "hpp" },
-	compilationDatabaseDirectory = "./builds/dbg-x86",
-})
-
-lsp.rust_analyzer.setup({
-	on_attach = on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			cachePriming = {
-				numThreads = 4,
-			},
-			assist = {
-				importGranularity = "module",
-				importPrefix = "self",
-			},
-			imports = {
-				granularity = {
-					group = "module",
-				},
-				prefix = "self",
-			},
-			cargo = {
-				loadOutDirsFromCheck = true,
-				buildScripts = {
-					enable = true,
+-- pylsp
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "python",
+	callback = function()
+		start_lsp("pylsp", {
+			cmd = { "pylsp" },
+			on_init = function(client)
+				if client.server_capabilities then
+					client.server_capabilities.semanticTokensProvider = nil
+				end
+			end,
+			settings = {
+				pylsp = {
+					plugins = {
+						flake8 = { enabled = true },
+						pylint = { enabled = true },
+						jedi = { environemnt = "python3.9" },
+						jedi_completion = { enabled = true },
+					},
 				},
 			},
-			procMacro = {
-				enable = true,
-			},
-			check = {
-				command = "clippy",
-			},
-		},
-	},
+		})
+	end,
 })
--- vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
--- 	pattern = "*.go",
--- 	command = 'silent! execute "!gci overwrite -s standard -s default -s "prefix(github.com/daixiang0/gci) %" | redraw!',
--- })
+
+-- pyright
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "python",
+	callback = function()
+		start_lsp("pyright", {
+			cmd = { "pyright-langserver", "--stdio" },
+			settings = {
+				analysis = {
+					autoSearchPaths = true,
+					diagnosticMode = "workspace",
+					useLibraryCodeForTypes = true,
+					typeCheckingMode = "strict",
+				},
+				venvPath = "/home/manvir/miniconda3",
+				executionEnvironments = {
+					{
+						root = "~",
+						venv = "~",
+						extraPaths = {
+							"/home/manvir/miniconda3/lib/python3.12/site-packages",
+						},
+					},
+				},
+			},
+		})
+	end,
+})
+
+-- cucumber_language_server
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "cucumber", "feature" },
+	callback = function()
+		start_lsp("cucumber_language_server", {
+			cmd = { "cucumber-language-server", "--stdio" },
+		})
+	end,
+})
+
+-- gopls
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "go", "gomod" },
+	callback = function()
+		start_lsp("gopls", {
+			cmd = { "gopls" },
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					usePlaceholders = true,
+					analyses = {
+						unusedparams = true,
+					},
+					staticcheck = true,
+				},
+			},
+		})
+	end,
+})
+
+-- texlab
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "tex", "bib" },
+	callback = function()
+		start_lsp("texlab", {
+			cmd = { "texlab" },
+		})
+	end,
+})
+
+-- eslint
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	callback = function()
+		start_lsp("eslint", {
+			cmd = { "vscode-eslint-language-server", "--stdio" },
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					command = "EslintFixAll",
+				})
+			end,
+		})
+	end,
+})
+
+-- ts_ls
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	callback = function()
+		start_lsp("ts_ls", {
+			cmd = { "typescript-language-server", "--stdio" },
+		})
+	end,
+})
+
+-- clangd
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp", "hpp" },
+	callback = function()
+		start_lsp("clangd", {
+			cmd = {
+				"clangd-15",
+				"--background-index",
+				"--pch-storage=memory",
+				"--clang-tidy",
+				"--all-scopes-completion=true",
+				"--query-driver=/usr/bin/g++",
+				"--completion-style=detailed",
+				"--compile-commands-dir=./builds/dbg-x86",
+				"--enable-config",
+				"--header-insertion=iwyu",
+				"-j=10",
+			},
+		})
+	end,
+})
+
+-- rust_analyzer
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function()
+		start_lsp("rust_analyzer", {
+			cmd = { "rust-analyzer" },
+			settings = {
+				["rust-analyzer"] = {
+					cachePriming = {
+						numThreads = 4,
+					},
+					assist = {
+						importGranularity = "module",
+						importPrefix = "self",
+					},
+					imports = {
+						granularity = {
+							group = "module",
+						},
+						prefix = "self",
+					},
+					cargo = {
+						loadOutDirsFromCheck = true,
+						buildScripts = {
+							enable = true,
+						},
+					},
+					procMacro = {
+						enable = true,
+					},
+					check = {
+						command = "clippy",
+					},
+				},
+			},
+		})
+	end,
+})
+
 vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
 	pattern = "*.rs",
 	command = 'silent! execute "!cargo fmt"| redraw!',
-})
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "bats",
-	callback = function()
-		vim.lsp.start({
-			name = "bash-language-server",
-			cmd = { "bash-language-server", "start" },
-		})
-	end,
 })
