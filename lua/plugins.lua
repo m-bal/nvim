@@ -81,7 +81,7 @@ return {
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-unimpaired" },
 	{ "tpope/vim-endwise" },
-	-- { "airblade/vim-rooter" },
+	{ "airblade/vim-rooter" },
 	-- { "ahmedkhalf/project.nvim" },
 	{ "numToStr/Comment.nvim" },
 	{ "willothy/flatten.nvim" },
@@ -177,4 +177,27 @@ return {
       }
     },
     { 'rafikdraoui/jj-diffconflicts' },
+    {
+      'm-bal/confluence-nvim',
+      dependencies = {
+        'nvim-telescope/telescope.nvim',
+      },
+      config = function()
+        require('confluence').setup({
+          confluence_url = 'https://mainspringenergy.atlassian.net/wiki',
+          auth = {
+            type = 'token',  -- 'token' for Confluence Cloud, 'pat' for Data Center
+            email = 'manvir.bal@mainspringenergy.com',  -- Required for 'token' type
+            token = vim.fn.system("git config --get jira.token"),
+          },
+          debug = true,
+        })
+      end,
+    },
+    { 
+      'zbirenbaum/copilot.lua',
+      dependencies = {
+        'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+      },
+    }
 }

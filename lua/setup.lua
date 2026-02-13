@@ -4,7 +4,7 @@ vim.g.vem_tabline_show_number = "index"
 vim.g.vem_tabline_show_icon = 0
 
 vim.o.fillchars = "vert:|,fold:-,eob:~"
-vim.o.autochdir = true
+vim.o.autochdir = false
 vim.o.ruler = true
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -53,6 +53,7 @@ vim.opt.concealcursor = "nc"
 vim.o.laststatus = 2
 -- Disable mouse popup
 vim.cmd("set mouse=")
+vim.o.clipboard = "unnamedplus"
 
 vim.cmd("language en_US.utf-8")
 
@@ -258,7 +259,8 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme silkcircuit]])
+vim.cmd([[colorscheme oxide]])
+-- vim.cmd([[colorscheme fahrenheit]])
 vim.cmd([[command! G Neogit]])
 -- vim.cmd("highlight Cursor guifg=black guibg=red")
 -- vim.cmd("highlight MatchParen guifg=red guibg=None")
