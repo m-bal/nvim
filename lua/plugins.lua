@@ -177,27 +177,4 @@ return {
       }
     },
     { 'rafikdraoui/jj-diffconflicts' },
-    {
-      'm-bal/confluence-nvim',
-      dependencies = {
-        'nvim-telescope/telescope.nvim',
-      },
-      config = function()
-        require('confluence').setup({
-          confluence_url = 'https://mainspringenergy.atlassian.net/wiki',
-          auth = {
-            type = 'token',  -- 'token' for Confluence Cloud, 'pat' for Data Center
-            email = 'manvir.bal@mainspringenergy.com',  -- Required for 'token' type
-            token = vim.fn.system("git config --get jira.token"),
-          },
-          debug = true,
-        })
-      end,
-    },
-    { 
-      'zbirenbaum/copilot.lua',
-      dependencies = {
-        'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
-      },
-    }
 }

@@ -69,4 +69,3 @@ require("scope").setup({})
 require("silkcircuit").setup({
   variant = "glow", -- "neon" | "vibrant" | "soft" | "glow"
 })
-require("copilot").setup(options)
