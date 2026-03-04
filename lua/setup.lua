@@ -259,7 +259,7 @@ require("dracula").setup({
 		-- Nothing = {} -- clear highlight of Nothing
 	},
 })
-vim.cmd([[colorscheme oxide]])
+vim.cmd([[colorscheme ubuntu]])
 -- vim.cmd([[colorscheme fahrenheit]])
 vim.cmd([[command! G Neogit]])
 -- vim.cmd("highlight Cursor guifg=black guibg=red")
